@@ -7,7 +7,7 @@
             <img id="go-back" src="../assets/imgs/goBackAsset 10.png" alt="go back" (click)="this.currentMachine = '';">
             <div id="nav-machine">
                 {{currentMachine}}
-                <img class="nav-icons" *ngFor="let mode of learningModes" [src]="mode.src" (click)="this.learningMode = mode.name" [class.chosen-learning]="this.learningMode === mode.name">
+                <img class="nav-icons" *ngFor="let mode of learningModes;" [src]="'../assets/imgs/' + mode + '.png'" (click)="this.learningMode = mode" [class.chosen-learning]="this.learningMode === mode">
             </div>
         </ng-template>
     </div>
@@ -23,57 +23,8 @@
             </div>
         </ng-container>
         <ng-template #machinePageBottom>
-            <app-presentation *ngIf="learningMode !== 'הכרה'"></app-presentation>
-            <app-model-viewing *ngIf="learningMode !== 'תפעול'" [config]="config" [currentMachine]="currentMachine"> </app-model-viewing>
+            <app-presentation *ngIf="learningMode !== introPageInfo.learningModes[0]"></app-presentation>
+            <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"> </app-model-viewing>
         </ng-template>
     </div>
-
-  <!-- <div class="machine-page" *ngIf="currentMachine !== ''">
-      <div id="top-container">
-          <h2 id="machine-name">{{currentMachine}}</h2>
-          <button id="go-back" (click)="this.currentMachine = '';">חזרה</button>
-          <div id="sub-menu">
-              <button (click)="this.learningMode = mode" [class.chosen-learning]="this.learningMode === mode"
-              [value]="mode" *ngFor="let mode of learningModes"> {{mode}} </button>
-          </div>
-      </div>
-
-      <app-presentation *ngIf="learningMode !== 'הכרה'"></app-presentation>
-      <app-model-viewing class="get-to-know" *ngIf="learningMode !== 'תפעול'" [config]="config" [currentMachine]="currentMachine"> </app-model-viewing>
-  </div> -->
 </div>
-
-
-
-
-
-<!-- <div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
-    <div id="intro-container" *ngIf="currentMachine === ''">
-        <div id="top-container">
-            <h5 class="title">{{introPageInfo.pageTitle}}</h5>
-        </div>
-        <div id="menu-container">
-            <div id="menu-title">{{introPageInfo.menuTitle}}</div>
-            <div id="machines-container">
-                <div class="button" (click)="changeMachine(machine)" *ngFor="let machine of machines; let i = index;" [style]="'align-self: ' + (i % 2 === 0 ? 'end' : 'start') + ';'">
-                    <img src="../assets/imgs/button.png" alt="button" [style]="i % 2 === 0 ? '' : 'transform: rotateY(180deg);'">
-                    <h2 class="button-title">{{machine}}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  <div class="machine-page" *ngIf="currentMachine !== ''">
-      <div id="top-container">
-          <h2 id="machine-name">{{currentMachine}}</h2>
-          <button id="go-back" (click)="this.currentMachine = '';">חזרה</button>
-          <div id="sub-menu">
-              <button (click)="this.learningMode = mode" [class.chosen-learning]="this.learningMode === mode"
-              [value]="mode" *ngFor="let mode of learningModes"> {{mode}} </button>
-          </div>
-      </div>
-
-      <app-presentation *ngIf="learningMode !== 'הכרה'"></app-presentation>
-      <app-model-viewing class="get-to-know" *ngIf="learningMode !== 'תפעול'" [config]="config" [currentMachine]="currentMachine"> </app-model-viewing>
-  </div>
-</div> -->

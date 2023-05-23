@@ -1,9 +1,7 @@
 import { DetailsService } from './../services/details/details.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ModelService } from '../services/model/model.service';
-import { ModelConfig } from '../info';
-import { Details } from '../info';
-import { details } from '../info';
+import { ModelConfig, Details, details, modelPage } from '../info';
 
 @Component({
   selector: 'app-model-viewing',
@@ -15,6 +13,7 @@ export class ModelViewingComponent implements OnInit {
   listState: string = 'hidden';
   partList: { [partName: string]: string; } = {};
   details: Details;
+  modelPage = modelPage;
   @Input() currentMachine: string = '';
   @Input() config: ModelConfig = {
     distanceFromModel: 15,

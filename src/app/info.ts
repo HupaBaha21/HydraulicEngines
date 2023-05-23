@@ -48,5 +48,13 @@ export const machines: string[] = [
 export const introPageInfo = {
   backgroundImg: "../assets/imgs/background.jpg",
   pageTitle: "שלום וברוכים הבאים לאתר של דניאלה!",
-  menuTitle: "בחרו מכונה"
+  menuTitle: "בחרו מכונה",
+  learningModes: [
+    "view",
+    "presentation"
+  ]
+}
+
+export const modelPage = {
+  listTitle: "רשימת חלקים:"
 }
