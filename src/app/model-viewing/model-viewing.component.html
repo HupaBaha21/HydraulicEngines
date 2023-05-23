@@ -1,0 +1,24 @@
+<!-- loading bar -->
+<div class="progress-container" *ngIf="!this.isLoaded">
+  <div class="lds-ellipsis">
+      <div *ngFor="let number of [].constructor(4)"></div>
+  </div>
+</div>
+
+<!-- list -->
+<div #list id="list" [class]="listState">
+  <img src="../../assets/imgs/x.png" alt="x" (click)="listState = 'inactive';">
+  <h1>רשימת חלקים:</h1>
+  <p *ngFor="let item of partList | keyvalue" (click)="lookAtListObject(item.key)">{{item.key}}</p>
+</div>
+
+<div id="zoom-container">
+  <img src="../assets/imgs/plus.png" alt="plus" (click)="zoom(0.1);">
+  <img src="../assets/imgs/minus.png" alt="minus" (click)="zoom(-0.1);">
+  <img src="../../assets/imgs/left-arrow.png" alt="left-arrow" (click)="listState = 'active'">
+</div>
+
+
+<canvas id="view"></canvas>
+
+<app-details [isVisible]="false" [details]="this.details"></app-details>

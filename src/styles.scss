@@ -1,0 +1,69 @@
+body {
+	margin: 0;
+	box-sizing: border-box;
+	position: relative;
+	background-color: #808080;
+}
+
+* {
+  direction: rtl;
+  user-select: none;
+}
+
+html * {
+	font-family: 'Assistant', sans-serif;
+}
+
+.background-div {
+  height: 100%;
+  width: 100%;
+  max-height: 37vw;
+  max-width: 61vw;
+  position: absolute;
+  top: -20%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.backgroung-img {
+  background-repeat: no-repeat;
+  position: absolute;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100vw;
+  // min-width: 545px;
+  // min-height: 415px;
+}
+
+/* Operations Screens */
+.square-button {
+  background-color: brown;
+  height: 13vh;
+  width: 13vh;
+}
+
+.left-buttons-container {
+  height: 53.4%;
+  width: 11.6%;
+  position: absolute;
+  top: 20%;
+  left: 0.6%;
+  opacity: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* .left-button {
+  height: 29%;
+  width: 100%;
+  opacity: 0%;
+} */
+
+
+
+* {
+  user-select: none;
+}

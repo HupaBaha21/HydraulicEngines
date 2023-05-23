@@ -1,0 +1,8 @@
+.screen {
+  position: absolute;
+  left: -23vw;
+  top: 20vh;
+  rotate: 90deg;
+  height: 100vw;
+  width: 125vw;
+}
