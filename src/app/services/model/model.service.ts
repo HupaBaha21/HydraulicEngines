@@ -96,7 +96,9 @@ export class ModelService {
     });
     renderer.outputEncoding = sRGBEncoding;
     renderer.setPixelRatio(2);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    renderer.setSize(vw, vh);
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.toneMappingExposure = 2; // for outline
 
@@ -115,7 +117,7 @@ export class ModelService {
 
   private setupOutlinePass(config: ModelConfig): OutlinePass {
     const outlinePass = new OutlinePass( new Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
-    outlinePass.visibleEdgeColor.setHex(config.edgeColor ?? 0xffffff);
+    outlinePass.visibleEdgeColor.setHex(config.edgeColor ?? 880808);
     outlinePass.edgeStrength = 4;
 
     return outlinePass;

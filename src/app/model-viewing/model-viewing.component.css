@@ -2,11 +2,8 @@
   background-color: aquamarine;
   height: 82.5vh;
   position: absolute;
-  /* top: 5vh; */
   width: 100vw;
-  left: -10vw;
   z-index: 12;
-  /* animation: slide-up 1s timing-function 0s 1 direction fill-mode; */
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.01, 0.510, 0.555, 1);
   animation-delay: 0s;
@@ -51,15 +48,23 @@
 }
 
 #zoom-container {
-  background-color: aqua;
-  height: fit-content;
+  background-color: #addef2;
+  height: 10%;
   position: absolute;
-  width: fit-content;
+  width: 41%;
   z-index: 10;
   right: 0;
-  top: 13%;
+  top: 6%;
   display: flex;
-  flex-direction: row-reverse;
+  border-radius: 26px 0px 0px 26px;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1%;
+}
+
+.zoom-buttons {
+  height: 69%;
+  min-height: 43px;
 }
 
 .progress-container {

@@ -9,10 +9,19 @@ import { ModelConfig } from './info';
 })
 export class AppComponent {
   introPageInfo = introPageInfo;
-  learningMode: string = 'תפעול';
+  learningMode: string = 'הכרה';
   currentMachine: string = '';
   machines = machines;
-  learningModes: string[] = ["הכרה", "תפעול"];
+  learningModes = [
+    {
+      name: "תפעול",
+      src: "../assets/imgs/presentation.png"
+    },
+    {
+      name: "הכרה",
+      src: "../assets/imgs/view.png"
+    }
+  ];
 
   public config: ModelConfig = {
     distanceFromModel: 15,

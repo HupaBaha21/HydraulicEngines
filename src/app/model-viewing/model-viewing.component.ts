@@ -57,6 +57,5 @@ export class ModelViewingComponent implements OnInit {
   lookAtListObject(name: string) {
     this.modelService.lookAtListObject(name);
     this.listState = 'inactive';
-
   }
 }
