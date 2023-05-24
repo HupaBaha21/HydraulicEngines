@@ -9,12 +9,23 @@ import { ModelConfig, Details, details, modelPage } from '../info';
   styleUrls: ['./model-viewing.component.css']
 })
 export class ModelViewingComponent implements OnInit {
-  isLoaded: boolean = false;
+  // list states: 
+  // active: animation slide up
+  // inactive: animation slide down
+  // hidden: display none
   listState: string = 'hidden';
+  states = {
+    hidden: "hidden",
+    inactive: "inactive",
+    active: "active"
+  }
+
+  isLoaded: boolean = false;
   partList: { [partName: string]: string; } = {};
   details: Details;
   modelPage = modelPage;
   @Input() currentMachine: string = '';
+
   @Input() config: ModelConfig = {
     distanceFromModel: 15,
     modelPath: 'assets/TTU.glb',
@@ -44,13 +55,17 @@ export class ModelViewingComponent implements OnInit {
     this.partList = details[this.currentMachine];
 
     document.addEventListener("animationend", ()=> {
-      this.listState = this.listState === 'inactive' ? 'hidden' : 'active';
-      console.log(this.listState);
+      this.listState = (this.listState === this.states.inactive) ? this.states.hidden : this.states.active;
     });
   }
 
   zoom(num: number) {
     this.modelService.zoom(num);
+  }
+
+
+  toggleList() {
+    this.listState = (this.listState !== this.states.active) ? this.states.active : this.states.inactive;
   }
 
   lookAtListObject(name: string) {

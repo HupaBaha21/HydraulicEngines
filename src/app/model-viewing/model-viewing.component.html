@@ -7,15 +7,14 @@
 
 <!-- list -->
 <div #list id="list" [class]="listState">
-  <img src="../../assets/imgs/x.png" alt="x" (click)="listState = 'inactive';">
-  <h1>רשימת חלקים:</h1>
-  <p *ngFor="let item of partList | keyvalue" (click)="lookAtListObject(item.key)">{{item.key}}</p>
+  <h1>{{modelPage.listTitle}}</h1>
+  <p *ngFor="let item of partList | keyvalue" (click)="lookAtListObject(item.key)">-{{item.key}}</p>
 </div>
 
 <div id="zoom-container">
   <img class="zoom-buttons" src="../assets/imgs/plus.png" alt="plus" (click)="zoom(0.1);">
   <img class="zoom-buttons" src="../assets/imgs/minus.png" alt="minus" (click)="zoom(-0.1);">
-  <img class="zoom-buttons" src="../assets/imgs/list.png" alt="left-arrow" (click)="listState = 'active'">
+  <img class="zoom-buttons" src="../assets/imgs/list.png" alt="left-arrow" (click)="toggleList()">
 </div>
 
 

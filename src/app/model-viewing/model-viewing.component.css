@@ -1,14 +1,18 @@
 #list {
-  background-color: aquamarine;
-  height: 82.5vh;
+  background-color: #1e67ab;
+  height: 80%;
   position: absolute;
-  width: 100vw;
+  bottom: 0;
+  width: 78%;
   z-index: 12;
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.01, 0.510, 0.555, 1);
   animation-delay: 0s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  border-radius: 0px 54px 0px 0px;
+  padding: 0px 11%;
+  color: white;
 }
 
 .hidden {
@@ -51,7 +55,9 @@
   background-color: #addef2;
   height: 10%;
   position: absolute;
-  width: 41%;
+  width: 38%;
+  min-width: 155px;
+  min-height: 60px;
   z-index: 10;
   right: 0;
   top: 6%;
