@@ -1,35 +1,40 @@
 <div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" class="generic-animation" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [ngClass]="turn + 'Top'">
-        <!-- <div id="top-container" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [class.biggerTop]="topTurn" [class.smallerTop]="!topTurn"> -->
         <div id="signs">
             <img src="../assets/imgs/airForce.png" alt="airforce" class=" signs air-force">
             <img src="../assets/imgs/hupa.png" alt="hupa" class=" signs hupa">
         </div>
-        <ng-container *ngIf="currentMachine === ''; else machinePageTop">
-            <h5 id="title">{{introPageInfo.pageTitle}}</h5>
-        </ng-container>
-        <ng-template #machinePageTop>
-            <img id="go-back" src="../assets/imgs/goBackAsset 10.png" alt="go back" (click)="changeMachine('')">
-            <div id="nav-machine">
-                {{currentMachine}}
-                <img class="nav-icons" *ngFor="let mode of learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
-            </div>
-        </ng-template>
+        <div [class.opacityshake]="opacity">
+            <ng-container *ngIf="currentMachine === ''; else machinePageTop" >
+                <h5 id="title">{{introPageInfo.pageTitle}}</h5>
+            </ng-container>
+    
+            <ng-template #machinePageTop>
+                <img id="go-back" src="../assets/imgs/goBackAsset 10.png" alt="go back" (click)="changeMachine('')">
+                <div id="nav-machine">
+                    {{currentMachine}}
+                    <img class="nav-icons" *ngFor="let mode of learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
+                </div>
+            </ng-template>
+        </div>
+
     </div>
 
     <div id="bottom-container" class="generic-animation" [class]="currentMachine === '' ? 'bottom-intro' : 'bottom-machine'" [ngClass]="turn + 'Bottom'">
-        <ng-container *ngIf="currentMachine === ''; else machinePageBottom">
-            <div id="menu-title">{{introPageInfo.menuTitle}}</div>
-            <div id="machines-container">
-                <div class="button" (click)="changeMachine(machine)" *ngFor="let machine of machines; let i = index;" [style]="'align-self: ' + (i % 2 === 0 ? 'end' : 'start') + ';'">
-                    <img src="../assets/imgs/button.png" alt="button" [style]="i % 2 === 0 ? '' : 'transform: rotateY(180deg);'">
-                    <h2 class="button-title">{{machine}}</h2>
+        <div [class.opacityshake]="opacity">
+            <ng-container *ngIf="currentMachine === ''; else machinePageBottom">
+                <div id="menu-title">{{introPageInfo.menuTitle}}</div>
+                <div id="machines-container">
+                    <div class="button" (click)="changeMachine(machine)" *ngFor="let machine of machines; let i = index;" [style]="'align-self: ' + (i % 2 === 0 ? 'end' : 'start') + ';'">
+                        <img src="../assets/imgs/button.png" alt="button" [style]="i % 2 === 0 ? '' : 'transform: rotateY(180deg);'">
+                        <h2 class="button-title">{{machine}}</h2>
+                    </div>
                 </div>
-            </div>
-        </ng-container>
-        <ng-template #machinePageBottom>
-            <app-presentation *ngIf="learningMode !== introPageInfo.learningModes[0]" [currentMachine]="currentMachine"></app-presentation>
-            <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"> </app-model-viewing>
-        </ng-template>
+            </ng-container>
+            <ng-template #machinePageBottom>
+                <app-presentation *ngIf="learningMode !== introPageInfo.learningModes[0]" [currentMachine]="currentMachine"></app-presentation>
+                <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"> </app-model-viewing>
+            </ng-template>
+        </div>
     </div>
 </div>

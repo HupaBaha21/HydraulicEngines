@@ -146,21 +146,23 @@
   height: var(--bottom-machine);
 }
 
-// animations and classes
 
-.opacity-animation {
-  animation: opacity 3s 1 forwards;
+
+// animations and classes
+.opacityshake {
+  animation: opacityshake 3s 1 forwards;
 }
 
-@keyframes opacity {
+@keyframes opacityshake {
   0% {
     opacity: 100%;
-  }
-
-  50% {
+  } 
+  25% {
     opacity: 0%;
   }
-
+  75% {
+    opacity: 0%;
+  }
   100% {
     opacity: 100%;
   }

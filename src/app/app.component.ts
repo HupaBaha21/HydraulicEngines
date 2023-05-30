@@ -9,13 +9,13 @@ import { ModelConfig } from './info';
 })
 export class AppComponent {
   introPageInfo = introPageInfo;
-  learningMode: string = introPageInfo.learningModes[0];
-  currentMachine: string = '';
-
-  turn: string = '';
-
   machines = machines;
   learningModes = introPageInfo.learningModes;
+  learningMode: string = introPageInfo.learningModes[0];
+  
+  currentMachine: string = '';
+  turn: string = '';
+  opacity: boolean = false;
 
   public config: ModelConfig = {
     distanceFromModel: 15,
@@ -26,14 +26,17 @@ export class AppComponent {
   };
 
   changeMachine(machine: string) {
-    this.switchTurns();
+    this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
+    this.opacity = true;
+
     setTimeout(() => {
       this.currentMachine = machine;
-      this.config.modelPath = `assets/${this.currentMachine}.glb`;
+      
+      setTimeout(() => {
+        this.opacity = false;
+        this.config.modelPath = `assets/${this.currentMachine}.glb`;
+      }, 2000);
+      
     }, 1000);
-  }
-
-  switchTurns() {
-    this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
   }
 }
