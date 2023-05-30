@@ -31,12 +31,14 @@ export class AppComponent {
 
     setTimeout(() => {
       this.currentMachine = machine;
+      if (machine !== '') {
+        this.config.modelPath = `assets/${this.currentMachine}.glb`;
+      }
       
       setTimeout(() => {
         this.opacity = false;
-        this.config.modelPath = `assets/${this.currentMachine}.glb`;
-      }, 2000);
+      }, 1500);
       
-    }, 1000);
+    }, 500);
   }
 }

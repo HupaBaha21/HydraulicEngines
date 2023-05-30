@@ -12,7 +12,7 @@ export class DetailsService {
   public retrieveDetails(key: string, machine: string) : Details {
     return {
       title: key.replaceAll('_',' '),
-      text: details[machine][key] || ""
+      text: details[machine].parts[key] || ""
     };
   }
 }

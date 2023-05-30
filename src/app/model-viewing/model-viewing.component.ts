@@ -55,16 +55,16 @@ export class ModelViewingComponent implements OnInit {
     const canvas = <HTMLCanvasElement>document.querySelector('#view');
 
     this.modelService.setHdrEnvironment('assets/light1.hdr');
-    const isLoaded = this.modelService.createModelView(canvas, this.config);
+    const isLoaded = this.modelService.createModelView(canvas, this.config, this.currentMachine);
     this.modelService.partSelect.subscribe(part =>
       this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
     );
 
     isLoaded.subscribe(isDone => this.isLoaded = isDone);
 
-    this.partList = details[this.currentMachine];
+    this.partList = details[this.currentMachine].parts;
 
-    document.addEventListener("animationend", ()=> {
+    document.getElementById("list")?.addEventListener("animationend", ()=> {
       this.listState = (this.listState === this.states.inactive) ? this.states.hidden : this.states.active;
     });
   }
@@ -72,7 +72,6 @@ export class ModelViewingComponent implements OnInit {
   zoom(num: number) {
     this.modelService.zoom(num);
   }
-
 
   toggleList() {
     this.listState = (this.listState !== this.states.active) ? this.states.active : this.states.inactive;

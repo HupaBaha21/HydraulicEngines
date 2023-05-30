@@ -5,9 +5,7 @@ export interface Details {
 
 export interface ModelConfig {
   edgeColor?: number;
-
   distanceFromModel: number;
-
   modelPath: string;
   modelHeight: number;
   onModelLoadProgress: (xhr: ProgressEvent<EventTarget>) => void;
@@ -15,14 +13,25 @@ export interface ModelConfig {
 
 }
 
-export const details: {[machine: string] : {[partName: string] : string}} = {
+export const details: { [machine: string]: {
+  parts: { [itemName: string]: string; };
+  outerParts: { [itemName: string]: string; };
+  }
+} = {
   HPU: {
-    middlePinkCube: "middle pink cube",
-    blueBall: "blueBall",
-    yellow: "yellow",
-    redBall: "redBall"
+    parts: {
+      middlePinkCube: "middle pink cube",
+      blueBall: "blueBall",
+      yellow: "yellow",
+      redBall: "redBall",
+      nowhere: "nwo"
+    },
+    outerParts: {
+
+    }
   },
   TTU: {
+    parts: {
       Cube: "CUbe opsdaidpoiasfasfasf",
       Cube001: "Cube001",
       Cube002: "Cube001",
@@ -37,8 +46,42 @@ export const details: {[machine: string] : {[partName: string] : string}} = {
       Cube011: "Cube011",
       Cube012: "Cube012",
       Cube013: "Cube001",
+    },
+    outerParts: {
+      
+    }
   }
 }
+
+// export const details: {[machine: string] : {[parts: string] : string}, [outerParts: string] : string[]} = {
+//   HPU: {
+//   }
+// }
+
+
+// const data :
+//   {
+//     [machine: string]:
+//     {
+//       parts: { [itemName: string]: string; };
+//       outerParts: { [itemName: string]: string; };
+//     }
+//   }
+//   = {
+//   Machine: {
+//     parts: {
+//       part1: "part1",
+//       part2: "part2",
+//       part3: "part3"
+//     },
+//     outerParts: {
+//       outerPart1: "outerPart1",
+//       outerPart2: "outerPart2",
+//       outerPart3: "outerPart3",
+//       outerPart4: "outerPart4",
+//     }
+//   }
+// }
 
 export const machines: string[] = [
   "HPU",

@@ -1,12 +1,12 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { ACESFilmicToneMapping, EquirectangularReflectionMapping, Object3D, PerspectiveCamera, Raycaster, Scene, sRGBEncoding, TextureLoader, Vector2, WebGLRenderer, Material, Vector3, MeshBasicMaterial, Mesh, PlaneGeometry } from 'three';
+import { ACESFilmicToneMapping, EquirectangularReflectionMapping, Object3D, PerspectiveCamera, Raycaster, Scene, sRGBEncoding, TextureLoader, Vector2, WebGLRenderer, Vector3, Mesh } from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
-import { ModelConfig } from '../../info';
+import { ModelConfig, details } from '../../info';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -29,6 +29,7 @@ export class ModelService {
   private composer? : EffectComposer;
   private model? : Object3D;
   public parts : Object3D[];
+  private outerParts: {[itemName: string]: string; };
 
   outlinePass?: OutlinePass;
 
@@ -50,6 +51,7 @@ export class ModelService {
     this.raycaster = new Raycaster();
 
     this.parts = [];
+    this.outerParts = {};
   }
 
   public zoom(indicator: number) {
@@ -60,10 +62,12 @@ export class ModelService {
     }
   }
 
-  public createModelView(canvas: HTMLCanvasElement, config: ModelConfig): Observable<boolean> {
+  public createModelView(canvas: HTMLCanvasElement, config: ModelConfig, machine: string): Observable<boolean> {
     let isLoaded = new BehaviorSubject<boolean>(false);
 
     this.initScene(config);
+
+    this.outerParts = details[machine].outerParts;
 
     const renderer = this.setupRenderer(canvas, config);
     this.renderer = renderer;
@@ -190,7 +194,6 @@ export class ModelService {
   }
 
   private onDocumentMouseDown(event: any) {
-    console.log("ahsdkdjs");
     this.controls!.target = new Vector3(0,0,0);
 
     //if a part has been selected from model and not from list
@@ -209,22 +212,34 @@ export class ModelService {
   }
 
   public lookAtListObject(name: string){
-    this.selectedListObject = this.findPartByName(name);
-    this.outlinePass!.selectedObjects = [this.selectedListObject!];
-    this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
-    this.controls!.target = this.selectedListObject!.position;
-
-    this.parts.forEach(part => {
-      if(part instanceof Mesh){
-          part.material.opacity = 0.3;
+    //if there is 
+    if (this.findPartByName(name) !== false) {
+      this.selectedListObject = this.findPartByName(name);
+      this.outlinePass!.selectedObjects = [this.selectedListObject!];
+      this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
+      this.controls!.target = this.selectedListObject!.position;
+  
+      this.parts.forEach(part => {
+        if(part instanceof Mesh){
+            part.material.opacity = 0.3;
+        }
+      });
+  
+      if(this.selectedListObject instanceof Mesh){
+        this.selectedListObject.material.opacity = 1.0;
       }
-    });
-
-    if(this.selectedListObject instanceof Mesh){
-      this.selectedListObject.material.opacity = 1.0;
+      
     }
   }
 
+  // private searchForOuterObject(name: string){
+  //   for (const key in this.outerParts) {
+  //     if (key === name) {
+  //       return this.outerParts[key];
+  //     }
+  //   }
+  //   return null;
+  // }
 
   private findPartByName(name: string): any {
     for (let i = 0; i < this.parts.length; i++) {
@@ -232,6 +247,8 @@ export class ModelService {
         return this.parts[i];
       }
     };
+
+    return false;
   }
 
   private onDocumentMouseHover(event: any) {

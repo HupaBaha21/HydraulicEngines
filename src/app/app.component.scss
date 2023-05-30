@@ -1,5 +1,4 @@
 #signs {
-  --distanceFromEdges: 4%;
   .signs {
     position: absolute;
     top: 5%;
@@ -23,6 +22,7 @@
   --top-intro: 37%;
   --bottom-machine: 74%;
   --bottom-intro: 63%;
+  --distanceFromEdges: 4%;
 
   position: absolute;
   width: 100%;
@@ -64,13 +64,23 @@
     display: flex;
     align-items: center;
     min-width: 166px;
-    padding-left: 3%;
+    padding-left: var(--distanceFromEdges);
     direction: ltr;
 
-    .nav-icons {
-      min-height: 27px;
-      height: 66%;
-      margin-left: 4%;
+    #learning-modes-container {
+      right: var(--distanceFromEdges);
+      position: absolute;
+      height: 100%;
+      width: 32%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      
+      .nav-icons {
+        min-height: 27px;
+        height: 66%;
+        margin-left: 11%;
+      }
     }
   }
 }
@@ -150,7 +160,7 @@
 
 // animations and classes
 .opacityshake {
-  animation: opacityshake 3s 1 forwards;
+  animation: opacityshake 2s 1 forwards;
 }
 
 @keyframes opacityshake {
@@ -169,7 +179,7 @@
 }
 
 .generic-animation {
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-fill-mode: forwards;
 }
 

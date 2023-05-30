@@ -13,7 +13,9 @@
                 <img id="go-back" src="../assets/imgs/goBackAsset 10.png" alt="go back" (click)="changeMachine('')">
                 <div id="nav-machine">
                     {{currentMachine}}
-                    <img class="nav-icons" *ngFor="let mode of learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
+                    <div id="learning-modes-container">
+                        <img class="nav-icons" *ngFor="let mode of learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
+                    </div>
                 </div>
             </ng-template>
         </div>
@@ -25,7 +27,7 @@
             <ng-container *ngIf="currentMachine === ''; else machinePageBottom">
                 <div id="menu-title">{{introPageInfo.menuTitle}}</div>
                 <div id="machines-container">
-                    <div class="button" (click)="changeMachine(machine)" *ngFor="let machine of machines; let i = index;" [style]="'align-self: ' + (i % 2 === 0 ? 'end' : 'start') + ';'">
+                    <div class="button" *ngFor="let machine of machines; let i = index;" (click)="changeMachine(machine)" [style]="'align-self: ' + (i % 2 === 0 ? 'end' : 'start') + ';'">
                         <img src="../assets/imgs/button.png" alt="button" [style]="i % 2 === 0 ? '' : 'transform: rotateY(180deg);'">
                         <h2 class="button-title">{{machine}}</h2>
                     </div>
@@ -33,7 +35,7 @@
             </ng-container>
             <ng-template #machinePageBottom>
                 <app-presentation *ngIf="learningMode !== introPageInfo.learningModes[0]" [currentMachine]="currentMachine"></app-presentation>
-                <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"> </app-model-viewing>
+                <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"></app-model-viewing>
             </ng-template>
         </div>
     </div>
