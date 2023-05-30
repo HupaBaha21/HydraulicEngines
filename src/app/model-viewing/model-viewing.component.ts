@@ -24,6 +24,7 @@ export class ModelViewingComponent implements OnInit {
   partList: { [partName: string]: string; } = {};
   details: Details;
   modelPage = modelPage;
+  static isVisited: boolean = false;
   @Input() currentMachine: string = '';
 
   @Input() config: ModelConfig = {
@@ -35,10 +36,19 @@ export class ModelViewingComponent implements OnInit {
   };
 
   constructor(private modelService: ModelService, private detailsService: DetailsService) {
-    this.details = {
-      title: "",
-      text: ""
-    };
+    if (!ModelViewingComponent.isVisited) {
+      this.details = {
+        title: "הסבר",
+        text: `זהו מודל תלת מימדי של המכונה. ניתן לסובב אותו בעזרת האצבע, להגדיל ולהקטין בעזרת כפתורי ההגדלה וההקטנה, ולראות את רשימת החלקים שלו בלחיצה על כפתור החץ.
+        בנוסף, ניתן להתמקד באחד החלקים על ידי לחיצה על חלק, והחלק יופיע במרכז המסך.`
+      };
+      ModelViewingComponent.isVisited = true;
+    } else {
+      this.details = {
+        title: "",
+        text: ``
+      };
+    }
   }
 
   ngOnInit(): void {

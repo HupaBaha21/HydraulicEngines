@@ -11,6 +11,9 @@ export class AppComponent {
   introPageInfo = introPageInfo;
   learningMode: string = introPageInfo.learningModes[0];
   currentMachine: string = '';
+
+  turn: string = '';
+
   machines = machines;
   learningModes = introPageInfo.learningModes;
 
@@ -23,7 +26,14 @@ export class AppComponent {
   };
 
   changeMachine(machine: string) {
-    this.currentMachine = machine;
-    this.config.modelPath = `assets/${this.currentMachine}.glb`;
+    this.switchTurns();
+    setTimeout(() => {
+      this.currentMachine = machine;
+      this.config.modelPath = `assets/${this.currentMachine}.glb`;
+    }, 1000);
+  }
+
+  switchTurns() {
+    this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
   }
 }

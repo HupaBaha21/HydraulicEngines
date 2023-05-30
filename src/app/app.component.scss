@@ -1,10 +1,34 @@
+#signs {
+  --distanceFromEdges: 4%;
+  .signs {
+    position: absolute;
+    top: 5%;
+    height: 17%;
+    max-height: 65px;
+    min-height: 40px;
+  }
+
+  .air-force {
+    right: var(--distanceFromEdges);
+  }
+
+  .hupa {
+    left: var(--distanceFromEdges);
+  }
+}
+
 .container {
   --light-blue: #dcf5ff;
+  --top-machine: 26%;
+  --top-intro: 37%;
+  --bottom-machine: 74%;
+  --bottom-intro: 63%;
 
   position: absolute;
   width: 100%;
   height: 100vh;
   background-size: cover;
+
 }
 
 //top containers
@@ -17,7 +41,7 @@
 }
 
 .top-machine {
-  height: 30%;
+  height: var(--top-machine);
   
   #go-back {
     left: 7%;
@@ -29,10 +53,10 @@
   #nav-machine {
     background-color: var(--light-blue);
     height: 19%;
-    width: 64%;
+    width: 72%;
     position: absolute;
-    bottom: 12%;
-    right: 9%;
+    bottom: 15%;
+    left: 9%;
     border-radius: 13px;
     min-height: 52px;
     font-size: 2.2rem;
@@ -40,18 +64,19 @@
     display: flex;
     align-items: center;
     min-width: 166px;
-    padding-right: 2%;
+    padding-left: 3%;
+    direction: ltr;
 
     .nav-icons {
       min-height: 27px;
       height: 66%;
-      margin-right: 3%;
+      margin-left: 4%;
     }
   }
 }
 
 .top-intro {
-  height: 37%;
+  height: var(--top-intro);
 
   #title {
     position: absolute;
@@ -77,7 +102,7 @@
 }
 
 .bottom-intro {
-  height: 63%;
+  height: var(--bottom-intro);
   
   #menu-title {
     margin: 10% 0%;
@@ -112,14 +137,90 @@
       position: absolute;
       top: 0;
       text-align: center;
+      color: white;
     }
   }
 }
 
 .bottom-machine {
-  height: 70%;
+  height: var(--bottom-machine);
 }
 
+// animations and classes
 
+.opacity-animation {
+  animation: opacity 3s 1 forwards;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+.generic-animation {
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.MachineTop {
+  animation-name: MachineTop;
+}
+
+@keyframes MachineTop {
+  from {
+    height: var(--top-intro);
+  }
+  to {
+    height: var(--top-machine);
+  }
+}
+
+.IntroTop {
+  animation-name: IntroTop;
+}
+
+@keyframes IntroTop {
+  from {
+    height: var(--top-machine);
+  }
+  to {
+    height: var(--top-intro);
+  }
+}
+
+.IntroBottom {
+  animation-name: IntroBottom;
+}
+
+@keyframes IntroBottom {
+  from {
+    height: var(--bottom-machine);
+  }
+  to {
+    height: var(--bottom-intro);
+  }
+}
+
+.MachineBottom {
+  animation-name: MachineBottom;
+}
+
+@keyframes MachineBottom {
+  from {
+    height: var(--bottom-intro);
+  }
+  to {
+    height: var(--bottom-machine);
+  }
+}
 
 

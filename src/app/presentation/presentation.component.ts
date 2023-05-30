@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-presentation',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PresentationComponent implements OnInit {
   activeMessage: boolean = true;
   waitingTime: number = 3000;
+  @Input() currentMachine: string = '';
 
   ngOnInit(): void {
     setTimeout(() => {

@@ -53,6 +53,7 @@ export class ModelService {
   }
 
   public zoom(indicator: number) {
+    //turn into max and min
     if (this.camera.zoom + indicator > 0.5 && this.camera.zoom + indicator <= 2) {
       this.camera.zoom += indicator;
       this.camera.updateProjectionMatrix();
@@ -111,6 +112,8 @@ export class ModelService {
     controls.maxDistance = 30;
     controls.minDistance = 2.2;
     controls.panSpeed = 0.4;
+    controls.maxZoom = 2;
+    controls.minZoom = 0.5;
 
     return controls;
   }
@@ -182,11 +185,12 @@ export class ModelService {
   private setupDomEvents() {
     // document.addEventListener( 'mousemove', event => this.onDocumentMouseHover(event), false);
     // document.addEventListener( 'mousedown', event => this.onDocumentMouseDown(event), false);
-    document.getElementById("view")?.addEventListener( 'mousemove', event => this.onDocumentMouseHover(event), false);
-    document.getElementById("view")?.addEventListener( 'mousedown', event => this.onDocumentMouseDown(event), false);
+    document.getElementById("view")?.addEventListener('mousemove', event => this.onDocumentMouseHover(event), false);
+    document.getElementById("view")?.addEventListener('mousedown', event => this.onDocumentMouseDown(event), false);
   }
 
   private onDocumentMouseDown(event: any) {
+    console.log("ahsdkdjs");
     this.controls!.target = new Vector3(0,0,0);
 
     //if a part has been selected from model and not from list
@@ -199,7 +203,6 @@ export class ModelService {
       this.parts.forEach(part => {
         if(part instanceof Mesh){
           part.material.opacity = 1.0;
-          // part.material.visible = true;
         }
       });
     }
@@ -213,14 +216,12 @@ export class ModelService {
 
     this.parts.forEach(part => {
       if(part instanceof Mesh){
-          // part.material.visible = false;
           part.material.opacity = 0.3;
       }
     });
 
     if(this.selectedListObject instanceof Mesh){
       this.selectedListObject.material.opacity = 1.0;
-        // this.selectedListObject.material.visible = true;
     }
   }
 

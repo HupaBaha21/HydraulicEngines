@@ -9,7 +9,7 @@
   })
   export class DetailsComponent implements OnInit, OnChanges {
     modelService: ModelService;
-    @Input() isVisible = false;
+    @Input() isVisible = true;
 
     @Input() details: Details = {
       title: 'title',
@@ -25,6 +25,6 @@
     }
 
   ngOnInit(): void {
-    this.isVisible = false;
+    // this.isVisible = false;
   }
 }
