@@ -55,7 +55,7 @@ export class ModelViewingComponent implements OnInit {
     const canvas = <HTMLCanvasElement>document.querySelector('#view');
 
     this.modelService.setHdrEnvironment('assets/light1.hdr');
-    const isLoaded = this.modelService.createModelView(canvas, this.config, this.currentMachine);
+    const isLoaded = this.modelService.createModelView(canvas, this.config);
     this.modelService.partSelect.subscribe(part =>
       this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
     );

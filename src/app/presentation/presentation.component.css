@@ -1,21 +1,4 @@
 .screen {
-  /* position: absolute;
-  top: 20vh;
-  rotate: 90deg;
-  height: 100vw;
-  width: 125vw; */
-
-  /* height: 269px;
-  width: 326px;
-  transform: rotatez(90deg);
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  position: absolute;
-  margin: auto;
-  scale: 1.2; */
-
   height: 309px;
   width: 377px;
   transform: rotatez(90deg);

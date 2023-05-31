@@ -53,36 +53,6 @@ export const details: { [machine: string]: {
   }
 }
 
-// export const details: {[machine: string] : {[parts: string] : string}, [outerParts: string] : string[]} = {
-//   HPU: {
-//   }
-// }
-
-
-// const data :
-//   {
-//     [machine: string]:
-//     {
-//       parts: { [itemName: string]: string; };
-//       outerParts: { [itemName: string]: string; };
-//     }
-//   }
-//   = {
-//   Machine: {
-//     parts: {
-//       part1: "part1",
-//       part2: "part2",
-//       part3: "part3"
-//     },
-//     outerParts: {
-//       outerPart1: "outerPart1",
-//       outerPart2: "outerPart2",
-//       outerPart3: "outerPart3",
-//       outerPart4: "outerPart4",
-//     }
-//   }
-// }
-
 export const machines: string[] = [
   "HPU",
   "TTU"

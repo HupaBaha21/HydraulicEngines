@@ -29,12 +29,11 @@ export class ModelService {
   private composer? : EffectComposer;
   private model? : Object3D;
   public parts : Object3D[];
-  private outerParts: {[itemName: string]: string; };
+  // private outerParts: {[itemName: string]: string; };
 
   outlinePass?: OutlinePass;
 
   selectedListObject?: Object3D;
-  cameraPosition?: Vector3;
 
   renderer: WebGLRenderer = new WebGLRenderer();
 
@@ -51,23 +50,22 @@ export class ModelService {
     this.raycaster = new Raycaster();
 
     this.parts = [];
-    this.outerParts = {};
+    // this.outerParts = {};
   }
 
   public zoom(indicator: number) {
-    //turn into max and min
-    if (this.camera.zoom + indicator > 0.5 && this.camera.zoom + indicator <= 2) {
+    if (this.camera.zoom + indicator > this.controls!.minZoom && this.camera.zoom + indicator <= this.controls!.maxZoom) {
       this.camera.zoom += indicator;
       this.camera.updateProjectionMatrix();
     }
   }
 
-  public createModelView(canvas: HTMLCanvasElement, config: ModelConfig, machine: string): Observable<boolean> {
+  public createModelView(canvas: HTMLCanvasElement, config: ModelConfig): Observable<boolean> {
     let isLoaded = new BehaviorSubject<boolean>(false);
 
     this.initScene(config);
 
-    this.outerParts = details[machine].outerParts;
+    // this.outerParts = details[machine].outerParts;
 
     const renderer = this.setupRenderer(canvas, config);
     this.renderer = renderer;
@@ -83,14 +81,25 @@ export class ModelService {
   }
 
   public updateRendererSize(){
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    //if sagie wants this to update and be responsive: 
+    console.log("update");
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    this.renderer.setSize(vw, vh);
+    this.camera.aspect = vw/vh;
+    this.camera.updateProjectionMatrix();
+
+
+    // document.getElementById("view")!.style.height = String(vh);
+    // document.getElementById("view")!.style.width = String(vw);
+    // document.getElementById("view")?.style.height = ;
   }
 
   private initScene(config: ModelConfig) {
     this.scene.clear();
     this.camera.position.setZ(config.distanceFromModel);
     this.camera.zoom = 1;
-
     this.camera.updateProjectionMatrix();
   }
 
@@ -112,20 +121,23 @@ export class ModelService {
 
   private setupControls(canvas: HTMLCanvasElement): OrbitControls {
     const controls = new OrbitControls(this.camera, canvas);
-    controls.update();
     controls.maxDistance = 30;
-    controls.minDistance = 2.2;
+    controls.minDistance = 6.2;
     controls.panSpeed = 0.4;
+
+    //Only as variables usage, arent really enforced by the controls (Bc its a prerspective camera)
     controls.maxZoom = 2;
     controls.minZoom = 0.5;
 
+    controls.update();
+    
     return controls;
   }
 
   private setupOutlinePass(config: ModelConfig): OutlinePass {
     const outlinePass = new OutlinePass( new Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
-    outlinePass.visibleEdgeColor.setHex(config.edgeColor ?? 880808);
-    outlinePass.edgeStrength = 4;
+    outlinePass.visibleEdgeColor.setHex(config.edgeColor ?? 0xFF0000);
+    outlinePass.edgeStrength = 5;
 
     return outlinePass;
   }
@@ -158,6 +170,7 @@ export class ModelService {
     isLoaded.next(true);
     isLoaded.complete();
 
+    //Set all of the objects parts as transparent so that they could have their opacity changed later.
     this.parts.forEach(part => {
       if(part instanceof Mesh){
         part.material.transparent = true;
@@ -187,15 +200,22 @@ export class ModelService {
   }
 
   private setupDomEvents() {
-    // document.addEventListener( 'mousemove', event => this.onDocumentMouseHover(event), false);
-    // document.addEventListener( 'mousedown', event => this.onDocumentMouseDown(event), false);
     document.getElementById("view")?.addEventListener('mousemove', event => this.onDocumentMouseHover(event), false);
     document.getElementById("view")?.addEventListener('mousedown', event => this.onDocumentMouseDown(event), false);
+    window.addEventListener("resize", () => {
+      this.updateRendererSize();
+    });
   }
 
   private onDocumentMouseDown(event: any) {
     this.controls!.target = new Vector3(0,0,0);
 
+
+    console.log(this.outlinePass!.selectedObjects.length && !event.button);
+    console.log(this.selectedListObject !== undefined);
+
+
+    //Understand logic here
     //if a part has been selected from model and not from list
     if (this.outlinePass!.selectedObjects.length && !event.button) {
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
