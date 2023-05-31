@@ -23,8 +23,4 @@
     ngOnChanges(changes: SimpleChanges): void {
       this.isVisible = true;
     }
-
-  ngOnInit(): void {
-    // this.isVisible = false;
-  }
 }

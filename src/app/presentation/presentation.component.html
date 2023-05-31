@@ -4,16 +4,20 @@
 </div>
 
 <ng-template #presentation>
-  <!-- TTU -->
-  <iframe class="screen" frameborder="0"
+  <!-- 
+    There are 2 options:
+    putting each iframe manually
+    or solve the unsafe url problem
+   -->
+
+  <!-- <ng-container *ngFor="let presentation of presentations">
+    <iframe class="screen" [src]="presentation.src" frameborder="0" *ngIf="presentation.machine === currentMachine"></iframe>
+    <p>{{presentation.src}}</p>
+    <p>{{sanitizeUrl(presentation.src)}}</p>
+  </ng-container> -->
+
+  <iframe class="screen" width="476px" height="288px" frameborder="0"
   src="https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333"></iframe>
-
-
-  <!-- HPU -->
-  <!-- <iframe class="screen" frameborder="0"
-  src="https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333">
-  זהו פריט מצגת מוטבע של <a target="_blank" href="https://office.com">Microsoft Office</a>, המופעל באמצעות <a target="_blank"
-  href="https://office.com/webapps">Office</a>.</iframe> -->
 </ng-template>
 
 

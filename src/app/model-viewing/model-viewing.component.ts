@@ -26,27 +26,19 @@ export class ModelViewingComponent implements OnInit {
   modelPage = modelPage;
   static isVisited: boolean = false;
   @Input() currentMachine: string = '';
-
-  @Input() config: ModelConfig = {
-    distanceFromModel: 15,
-    modelPath: 'assets/TTU.glb',
-    modelHeight: 1.5,
-    onModelLoadProgress: (xhr) => { },
-    onModelLoadError: console.error
-  };
+  @Input() config?: ModelConfig;
 
   constructor(private modelService: ModelService, private detailsService: DetailsService) {
     if (!ModelViewingComponent.isVisited) {
       this.details = {
-        title: "הסבר",
-        text: `זהו מודל תלת מימדי של המכונה. ניתן לסובב אותו בעזרת האצבע, להגדיל ולהקטין בעזרת כפתורי ההגדלה וההקטנה, ולראות את רשימת החלקים שלו בלחיצה על כפתור החץ.
-        בנוסף, ניתן להתמקד באחד החלקים על ידי לחיצה על חלק, והחלק יופיע במרכז המסך.`
+        title: this.modelPage.explanationTitle,
+        text: this.modelPage.explanationText
       };
       ModelViewingComponent.isVisited = true;
     } else {
       this.details = {
         title: "",
-        text: ``
+        text: ""
       };
     }
   }
@@ -55,7 +47,7 @@ export class ModelViewingComponent implements OnInit {
     const canvas = <HTMLCanvasElement>document.querySelector('#view');
 
     this.modelService.setHdrEnvironment('assets/light1.hdr');
-    const isLoaded = this.modelService.createModelView(canvas, this.config);
+    const isLoaded = this.modelService.createModelView(canvas, this.config!);
     this.modelService.partSelect.subscribe(part =>
       this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
     );
@@ -69,8 +61,8 @@ export class ModelViewingComponent implements OnInit {
     });
   }
 
-  zoom(num: number) {
-    this.modelService.zoom(num);
+  zoom(indicator: number) {
+    this.modelService.zoom(indicator);
   }
 
   toggleList() {
@@ -79,6 +71,6 @@ export class ModelViewingComponent implements OnInit {
 
   lookAtListObject(name: string) {
     this.modelService.lookAtListObject(name);
-    this.listState = 'inactive';
+    this.listState = this.states.inactive;
   }
 }

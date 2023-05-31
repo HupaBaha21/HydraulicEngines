@@ -6,7 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
-import { ModelConfig, details } from '../../info';
+import { ModelConfig } from '../../info';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -192,10 +192,10 @@ export class ModelService {
 
   private updateRendererSize(){
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-      const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-      this.camera.aspect = vw/vh;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(vw, vh);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    this.camera.aspect = vw/vh;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(vw, vh);
   }
 
   private onDocumentMouseDown(event: any) {
