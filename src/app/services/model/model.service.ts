@@ -80,22 +80,6 @@ export class ModelService {
     return isLoaded;
   }
 
-  public updateRendererSize(){
-
-    //if sagie wants this to update and be responsive: 
-    console.log("update");
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-    this.renderer.setSize(vw, vh);
-    this.camera.aspect = vw/vh;
-    this.camera.updateProjectionMatrix();
-
-
-    // document.getElementById("view")!.style.height = String(vh);
-    // document.getElementById("view")!.style.width = String(vw);
-    // document.getElementById("view")?.style.height = ;
-  }
-
   private initScene(config: ModelConfig) {
     this.scene.clear();
     this.camera.position.setZ(config.distanceFromModel);
@@ -108,7 +92,6 @@ export class ModelService {
       canvas: canvas,
       alpha: true
     });
-    renderer.outputEncoding = sRGBEncoding;
     renderer.setPixelRatio(2);
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -205,6 +188,14 @@ export class ModelService {
     window.addEventListener("resize", () => {
       this.updateRendererSize();
     });
+  }
+
+  private updateRendererSize(){
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+      const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+      this.camera.aspect = vw/vh;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(vw, vh);
   }
 
   private onDocumentMouseDown(event: any) {

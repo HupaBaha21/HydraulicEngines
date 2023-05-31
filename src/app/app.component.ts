@@ -26,19 +26,21 @@ export class AppComponent {
   };
 
   changeMachine(machine: string) {
-    this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
-    this.opacity = true;
-
-    setTimeout(() => {
-      this.currentMachine = machine;
-      if (machine !== '') {
-        this.config.modelPath = `assets/${this.currentMachine}.glb`;
-      }
-      
+    if (!this.opacity) {
+      this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
+      this.opacity = true;
+  
       setTimeout(() => {
-        this.opacity = false;
-      }, 1500);
-      
-    }, 500);
+        this.currentMachine = machine;
+        if (machine !== '') {
+          this.config.modelPath = `assets/${this.currentMachine}.glb`;
+        }
+        
+        setTimeout(() => {
+          this.opacity = false;
+        }, 1500);
+        
+      }, 500);
+    }
   }
 }
