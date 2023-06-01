@@ -8,4 +8,21 @@
   left: 0;
   position: absolute;
   margin: auto;
+  background-color: aqua;
+}
+
+#turn-phone-container {
+  height: 80%;
+  width: 80%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  margin: auto;
+  text-align: center;
+}
+
+#turn-phone {
+  width: 98%;
 }

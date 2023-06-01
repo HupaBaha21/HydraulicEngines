@@ -7,7 +7,7 @@
     templateUrl: './details.component.html',
     styleUrls: ['./details.component.scss']
   })
-  export class DetailsComponent implements OnInit, OnChanges {
+  export class DetailsComponent implements OnChanges {
     modelService: ModelService;
     @Input() isVisible = true;
 

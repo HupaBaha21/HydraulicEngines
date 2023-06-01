@@ -76,9 +76,11 @@ export const modelPage = {
   בנוסף, ניתן להתמקד באחד החלקים על ידי לחיצה על חלק, והחלק יופיע במרכז המסך.`
 }
 
-export const presentations = [
-  {
-    src: "https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333",
-    machine: "HPU"
-  }
-]
+export const presentationPage = {
+  turnPhoneTitle: "סובבו את הטלפון"
+}
+
+export const presentations: {[machineName: string] : string} = {
+  HPU: "https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333",
+  TTU: "https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333",
+}

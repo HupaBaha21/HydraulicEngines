@@ -1,6 +1,7 @@
 #list {
+  --listHeight: 80%;
   background-color: #1e67ab;
-  height: 80%;
+  height: var(--listHeight);
   position: absolute;
   bottom: 0;
   width: 78%;
@@ -30,17 +31,21 @@
 
 @keyframes slide-down {
   0% {
+    height: var(--listHeight);
   }
   100% {
-    transform: translateY(83vh);
+    height: 0vh;
+    /* transform: translateY(83vh); */
   }
 }
 
 @keyframes slide-up {
   0% {
-    transform: translateY(60vh);
+    height: 0vh;
+    /* transform: translateY(60vh); */
   }
   100% {
+    height: var(--listHeight);
   }
 }
 
