@@ -1,8 +1,8 @@
 <div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" class="generic-animation" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [ngClass]="turn + 'Top'">
         <div id="signs">
-            <img src="../assets/imgs/airForce.png" alt="airforce" class=" signs air-force">
-            <img src="../assets/imgs/hupa.png" alt="hupa" class=" signs hupa">
+            <img [src]="introPageInfo.signs.airForce" alt="airforce" class=" signs air-force">
+            <img [src]="introPageInfo.signs.hupa" alt="hupa" class=" signs hupa">
         </div>
         <div [class.opacityshake]="opacity">
             <ng-container *ngIf="currentMachine === ''; else machinePageTop" >
@@ -10,7 +10,7 @@
             </ng-container>
     
             <ng-template #machinePageTop>
-                <img id="go-back" src="../assets/imgs/goBackAsset 10.png" alt="go back" (click)="changeMachine('')">
+                <img id="go-back" [src]="introPageInfo.goBackArrow" alt="go back" (click)="changeMachine('')">
                 <div id="nav-machine">
                     {{currentMachine}}
                     <div id="learning-modes-container">

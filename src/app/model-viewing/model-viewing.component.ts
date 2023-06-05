@@ -9,16 +9,8 @@ import { ModelConfig, Details, details, modelPage } from '../info';
   styleUrls: ['./model-viewing.component.css']
 })
 export class ModelViewingComponent implements OnInit {
-  // list states: 
-  // active: animation slide up
-  // inactive: animation slide down
-  // hidden: display none
-  listState: string = 'hidden';
-  states = {
-    hidden: "hidden",
-    inactive: "inactive",
-    active: "active"
-  }
+  listState: string = modelPage.states.hidden;
+  states = modelPage.states;
 
   isLoaded: boolean = false;
   partList: { [partName: string]: string; } = {};
@@ -45,7 +37,6 @@ export class ModelViewingComponent implements OnInit {
 
   ngOnInit(): void {
     const canvas = <HTMLCanvasElement>document.querySelector('#view');
-
     this.modelService.setHdrEnvironment('assets/light1.hdr');
     const isLoaded = this.modelService.createModelView(canvas, this.config!);
     this.modelService.partSelect.subscribe(part =>

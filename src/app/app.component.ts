@@ -19,17 +19,20 @@ export class AppComponent {
 
   public config: ModelConfig = {
     distanceFromModel: 15,
-    modelPath: 'assets/TTU.glb',
+    modelPath: 'assets/' + machines[0] + '.glb',
     modelHeight: 1.5,
     onModelLoadProgress: (xhr) => { },
     onModelLoadError: console.error
   };
 
   changeMachine(machine: string) {
+    // if the past animation is done = if opacity is false
+    // so that the user wouldnt be able to switch pages before the animation is done
     if (!this.opacity) {
       this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
       this.opacity = true;
       
+      // wait before adding elements to the dom, wait for the opacity to be 0% in the animation
       setTimeout(() => {
         this.learningMode = introPageInfo.learningModes[0];
         this.currentMachine = machine;
@@ -37,6 +40,7 @@ export class AppComponent {
           this.config.modelPath = `assets/${this.currentMachine}.glb`;
         }
         
+        // end animation (turn opacity to 100%) after all the elements have been added to the dom
         setTimeout(() => {
           this.opacity = false;
         }, 1500);

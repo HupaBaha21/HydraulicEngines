@@ -13,11 +13,7 @@ export interface ModelConfig {
 
 }
 
-export const details: { [machine: string]: {
-  parts: { [itemName: string]: string; };
-  outerParts: { [itemName: string]: string; };
-  }
-} = {
+export const details: { [machine: string]: { parts: { [itemName: string]: string; }; outerParts: { [itemName: string]: string; }; } } = {
   HPU: {
     parts: {
       middlePinkCube: "middle pink cube",
@@ -60,6 +56,11 @@ export const machines: string[] = [
 
 export const introPageInfo = {
   backgroundImg: "../assets/imgs/background.jpg",
+  signs: {
+    airForce: "../assets/imgs/airForce.png",
+    hupa: "../assets/imgs/hupa.png"
+  },
+  goBackArrow: "../assets/imgs/goBackAsset 10.png",
   pageTitle: "שלום וברוכים הבאים לאתר של דניאלה!",
   menuTitle: "בחרו מכונה",
   learningModes: [
@@ -69,6 +70,20 @@ export const introPageInfo = {
 }
 
 export const modelPage = {
+  // list states: 
+  // active: animation slide up
+  // inactive: animation slide down
+  // hidden: display none
+  states: {
+    hidden: "hidden",
+    inactive: "inactive",
+    active: "active"
+  },
+  imgs: {
+    plus: "../assets/imgs/plus.png",
+    minus: "../assets/imgs/minus.png",
+    list: "../assets/imgs/list.png",
+  },
   listTitle: "רשימת חלקים:",
   explanationTitle: "הסבר",
   explanationText: `זהו מודל תלת מימדי של המכונה.
@@ -77,7 +92,9 @@ export const modelPage = {
 }
 
 export const presentationPage = {
-  turnPhoneTitle: "סובבו את הטלפון"
+  turnPhoneTitle: "סובבו את הטלפון",
+  waitingTime: 4000,
+  turnPhoneGif: "../../assets/imgs/turnPhone.gif"
 }
 
 export const presentations: {[machineName: string] : string} = {

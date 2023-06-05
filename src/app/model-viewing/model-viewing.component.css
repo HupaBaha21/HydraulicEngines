@@ -35,14 +35,12 @@
   }
   100% {
     height: 0vh;
-    /* transform: translateY(83vh); */
   }
 }
 
 @keyframes slide-up {
   0% {
     height: 0vh;
-    /* transform: translateY(60vh); */
   }
   100% {
     height: var(--listHeight);

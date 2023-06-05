@@ -7,8 +7,6 @@ import { Details, details } from '../../info';
 
 export class DetailsService {
 
-  constructor() { }
-
   public retrieveDetails(key: string, machine: string) : Details {
     return {
       title: key.replaceAll('_',' '),

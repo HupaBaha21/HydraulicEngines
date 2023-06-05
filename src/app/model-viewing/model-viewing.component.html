@@ -12,9 +12,9 @@
 </div>
 
 <div id="zoom-container">
-  <img class="zoom-buttons" src="../assets/imgs/plus.png" alt="plus" (click)="zoom(0.1);">
-  <img class="zoom-buttons" src="../assets/imgs/minus.png" alt="minus" (click)="zoom(-0.1);">
-  <img class="zoom-buttons" src="../assets/imgs/list.png" alt="left-arrow" (click)="toggleList()">
+  <img class="zoom-buttons" [src]="modelPage.imgs.plus" alt="plus" (click)="zoom(0.1);">
+  <img class="zoom-buttons" [src]="modelPage.imgs.minus" alt="minus" (click)="zoom(-0.1);">
+  <img class="zoom-buttons" [src]="modelPage.imgs.list" alt="left-arrow" (click)="toggleList()">
 </div>
 
 
