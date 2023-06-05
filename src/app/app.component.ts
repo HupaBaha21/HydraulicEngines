@@ -27,11 +27,11 @@ export class AppComponent {
 
   changeMachine(machine: string) {
     if (!this.opacity) {
-      this.learningMode = introPageInfo.learningModes[0];
       this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
       this.opacity = true;
-  
+      
       setTimeout(() => {
+        this.learningMode = introPageInfo.learningModes[0];
         this.currentMachine = machine;
         if (machine !== '') {
           this.config.modelPath = `assets/${this.currentMachine}.glb`;

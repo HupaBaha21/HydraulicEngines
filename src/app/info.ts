@@ -81,6 +81,6 @@ export const presentationPage = {
 }
 
 export const presentations: {[machineName: string] : string} = {
-  HPU: "https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333",
-  TTU: "https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333",
+  HPU: "21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333",
+  TTU: "https://onedrive.live.com/embed?resid=41F21928ABD61941%211123&amp;authkey=!AD-R-ExtIii2GLE&amp;em=2&amp;wdAr=1.7777777777777777",
 }

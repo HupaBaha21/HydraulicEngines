@@ -11,7 +11,7 @@ import { PresentationComponent } from './presentation/presentation.component';
     AppComponent,
     DetailsComponent,
     ModelViewingComponent,
-    PresentationComponent
+    PresentationComponent,
   ],
   imports: [
     BrowserModule
@@ -20,9 +20,3 @@ import { PresentationComponent } from './presentation/presentation.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// @NgModule({
-//   imports: [ BrowserModule ],
-//   declarations: [ App, SafePipe ],
-//   bootstrap: [ App ]
-// })
