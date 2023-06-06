@@ -1,7 +1,7 @@
 <div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" class="generic-animation" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [ngClass]="turn + 'Top'">
         <div id="signs">
-            <img [src]="introPageInfo.signs.airForce" alt="airforce" class=" signs air-force">
+            <img [src]="introPageInfo.signs.airForce" alt="airforce" class="signs air-force">
             <img [src]="introPageInfo.signs.hupa" alt="hupa" class="signs hupa">
         </div>
         <div [class.opacityshake]="opacity">

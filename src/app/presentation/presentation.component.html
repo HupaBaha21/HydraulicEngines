@@ -1,6 +1,12 @@
-<div id="turn-phone-container" *ngIf="!isVisited">
-  <h2>{{presentationPage.turnPhoneTitle}}</h2>
-  <img id="turn-phone" [src]="presentationPage.turnPhoneGif" alt="turn phone">
+<div class="message-container" *ngIf="activeMessage">
+  <div *ngIf="!isVisited; else waitingMessage">
+    <h2>{{presentationPage.turnPhoneTitle}}</h2>
+    <img id="turn-phone" [src]="presentationPage.turnPhoneGif" alt="turn phone">
+  </div>
+
+  <ng-template #waitingMessage>
+    {{presentationPage.waitingMessage}}
+  </ng-template>
 </div>
 
   <!-- 

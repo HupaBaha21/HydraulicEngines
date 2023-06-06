@@ -10,13 +10,15 @@ export class PresentationComponent implements OnInit {
   @Input() currentMachine: string = '';
   presentationPage = presentationPage;
   static isVisited: boolean = false;
+  activeMessage: boolean = true;
 
   ngOnInit(): void {
-    if (!PresentationComponent.isVisited) {
-      setTimeout(() => {
+    setTimeout(() => {
+      this.activeMessage = false;
+      if (!PresentationComponent.isVisited) {
         PresentationComponent.isVisited = true;
-      }, presentationPage.waitingTime);
-    }
+      }
+    }, presentationPage.waitingTime);
   }
 
   

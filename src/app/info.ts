@@ -94,7 +94,8 @@ export const modelPage = {
 export const presentationPage = {
   turnPhoneTitle: "סובבו את הטלפון",
   waitingTime: 4000,
-  turnPhoneGif: "../../assets/imgs/turnPhone.gif"
+  turnPhoneGif: "../../assets/imgs/turnPhone.gif",
+  waitingMessage: "חכו לטעינת המסך"
 }
 
 export const presentations: {[machineName: string] : string} = {
