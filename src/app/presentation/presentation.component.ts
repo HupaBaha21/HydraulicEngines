@@ -7,13 +7,21 @@ import { presentationPage } from '../info';
   styleUrls: ['./presentation.component.css']
 })
 export class PresentationComponent implements OnInit {
-  activeMessage: boolean = true;
   @Input() currentMachine: string = '';
   presentationPage = presentationPage;
+  static isVisited: boolean = false;
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.activeMessage = false;
-    }, presentationPage.waitingTime);
+    if (!PresentationComponent.isVisited) {
+      setTimeout(() => {
+        PresentationComponent.isVisited = true;
+      }, presentationPage.waitingTime);
+    }
   }
+
+  
+  public get isVisited() : boolean {
+    return PresentationComponent.isVisited;
+  }
+  
 }

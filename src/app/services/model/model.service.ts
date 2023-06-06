@@ -190,6 +190,7 @@ export class ModelService {
     });
   }
 
+  // Fixes the renderer and camera to fit the current window size so that the model looks the same
   private updateRendererSize(){
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -199,21 +200,17 @@ export class ModelService {
   }
 
   private onDocumentMouseDown(event: any) {
+    // Reset the orbiting object to the origin point
     this.controls!.target = new Vector3(0,0,0);
 
-
-    console.log(this.outlinePass!.selectedObjects.length && !event.button);
-    console.log(this.selectedListObject !== undefined);
-
-
-    //Understand logic here
-    //if a part has been selected from model and not from list
+    //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
     }
 
-    //if a part has been selected from list and now the user just wants out of that
-    if(this.selectedListObject !== undefined){
+    //If there's a selected part from LIST
+    //User wants to exit the focus of list object
+    else if(this.selectedListObject !== undefined){
       this.parts.forEach(part => {
         if(part instanceof Mesh){
           part.material.opacity = 1.0;
@@ -223,20 +220,21 @@ export class ModelService {
   }
 
   public lookAtListObject(name: string){
-    //if there is 
-    if (this.findPartByName(name) !== false) {
-      this.selectedListObject = this.findPartByName(name);
+    let part = this.findPartByName(name);
+    //if this part exists in the object
+    if (part !== false) {
+      this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
       this.controls!.target = this.selectedListObject!.position;
   
       this.parts.forEach(part => {
-        if(part instanceof Mesh){
+        if(part instanceof Mesh) {
             part.material.opacity = 0.3;
         }
       });
   
-      if(this.selectedListObject instanceof Mesh){
+      if(this.selectedListObject instanceof Mesh) {
         this.selectedListObject.material.opacity = 1.0;
       }
       
