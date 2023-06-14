@@ -18,33 +18,21 @@ export const details: { [machine: string]: { parts: { [itemName: string]: string
     parts: {
       middlePinkCube: "middle pink cube",
       blueBall: "blueBall",
+    },
+    outerParts: {
       yellow: "yellow",
       redBall: "redBall",
       nowhere: "nwo"
-    },
-    outerParts: {
-
     }
   },
   TTU: {
     parts: {
-      Cube: "CUbe opsdaidpoiasfasfasf",
-      Cube001: "Cube001",
-      Cube002: "Cube001",
-      Cube003: "Cube003",
-      Cube004: "Cube004",
-      Cube005: "Cube005",
-      Cube006: "Cube006",
-      Cube007: "Cube007",
-      Cube008: "Cube008",
-      Cube009: "Cube009",
-      Cube010: "Cube010",
-      Cube011: "Cube011",
-      Cube012: "Cube012",
-      Cube013: "Cube001",
+      Sliding_rod: "מוט הזזה",
+      Acoustic_chamber1: "dfjshfkfdjshfds",
+      gas_fillter__tier_4001: "kskfhakhfksjahkjfsa"
     },
     outerParts: {
-      
+
     }
   }
 }
@@ -70,7 +58,7 @@ export const introPageInfo = {
 }
 
 export const modelPage = {
-  // list states: 
+  // list states:
   // active: animation slide up
   // inactive: animation slide down
   // hidden: display none

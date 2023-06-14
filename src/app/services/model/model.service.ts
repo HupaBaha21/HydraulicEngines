@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { ACESFilmicToneMapping, EquirectangularReflectionMapping, Object3D, PerspectiveCamera, Raycaster, Scene, sRGBEncoding, TextureLoader, Vector2, WebGLRenderer, Vector3, Mesh } from 'three';
+import { ACESFilmicToneMapping, EquirectangularReflectionMapping, Object3D, PerspectiveCamera, Raycaster, Scene, sRGBEncoding, TextureLoader, Vector2, WebGLRenderer, Vector3, Mesh, MOUSE } from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -61,11 +61,11 @@ export class ModelService {
   }
 
   public createModelView(canvas: HTMLCanvasElement, config: ModelConfig): Observable<boolean> {
+    console.log("createModelView: ");
+    console.log(config);
     let isLoaded = new BehaviorSubject<boolean>(false);
 
     this.initScene(config);
-
-    // this.outerParts = details[machine].outerParts;
 
     const renderer = this.setupRenderer(canvas, config);
     this.renderer = renderer;
@@ -85,6 +85,17 @@ export class ModelService {
     this.camera.position.setZ(config.distanceFromModel);
     this.camera.zoom = 1;
     this.camera.updateProjectionMatrix();
+  }
+
+  public getCamera(){
+    return this.camera;
+  }
+
+  public printCamera(formerCamera: PerspectiveCamera) {
+    console.log(this.camera === formerCamera);
+    // console.log(this.model);
+    // console.log(this.composer);
+    // console.log(this.controls);
   }
 
   private setupRenderer(canvas: HTMLCanvasElement, config: ModelConfig) : WebGLRenderer {
@@ -113,14 +124,14 @@ export class ModelService {
     controls.minZoom = 0.5;
 
     controls.update();
-    
+
     return controls;
   }
 
   private setupOutlinePass(config: ModelConfig): OutlinePass {
     const outlinePass = new OutlinePass( new Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
     outlinePass.visibleEdgeColor.setHex(config.edgeColor ?? 0xFF0000);
-    outlinePass.edgeStrength = 5;
+    outlinePass.edgeStrength = 10;
 
     return outlinePass;
   }
@@ -205,6 +216,8 @@ export class ModelService {
 
     //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
+      // console.log(event);
+      console.log(this.outlinePass!.selectedObjects[0]);
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
     }
 
@@ -227,17 +240,17 @@ export class ModelService {
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
       this.controls!.target = this.selectedListObject!.position;
-  
+
       this.parts.forEach(part => {
         if(part instanceof Mesh) {
             part.material.opacity = 0.3;
         }
       });
-  
+
       if(this.selectedListObject instanceof Mesh) {
         this.selectedListObject.material.opacity = 1.0;
       }
-      
+
     }
   }
 

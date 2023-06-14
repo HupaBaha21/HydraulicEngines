@@ -12,14 +12,14 @@ export class AppComponent {
   machines = machines;
   learningModes = introPageInfo.learningModes;
   learningMode: string = introPageInfo.learningModes[0];
-  
+
   currentMachine: string = '';
   turn: string = '';
   opacity: boolean = false;
 
   public config: ModelConfig = {
-    distanceFromModel: 15,
-    modelPath: 'assets/' + machines[0] + '.glb',
+    distanceFromModel: 20,
+    modelPath: 'assets/' + machines[0] + 'Inner.glb',
     modelHeight: 1.5,
     onModelLoadProgress: (xhr) => { },
     onModelLoadError: console.error
@@ -31,20 +31,20 @@ export class AppComponent {
     if (!this.opacity) {
       this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
       this.opacity = true;
-      
+
       // wait before adding elements to the dom, wait for the opacity to be 0% in the animation
       setTimeout(() => {
         this.learningMode = introPageInfo.learningModes[0];
         this.currentMachine = machine;
         if (machine !== '') {
-          this.config.modelPath = `assets/${this.currentMachine}.glb`;
+          this.config.modelPath = `assets/${this.currentMachine}Inner.glb`;
         }
-        
+
         // end animation (turn opacity to 100%) after all the elements have been added to the dom
         setTimeout(() => {
           this.opacity = false;
         }, 1500);
-        
+
       }, 500);
     }
   }
