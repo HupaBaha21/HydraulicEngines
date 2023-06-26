@@ -236,6 +236,12 @@ export class ModelService {
     let part = this.findPartByName(name);
     //if this part exists in the object
     if (part !== false) {
+      let state = getModelState();
+      let neededState = getPartPlace();
+      
+      if (state !== neededState) {
+        
+      }
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
@@ -252,6 +258,10 @@ export class ModelService {
       }
 
     }
+  }
+
+  private isOuterPart(name: string) {
+
   }
 
   // private searchForOuterObject(name: string){
