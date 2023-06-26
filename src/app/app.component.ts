@@ -1,6 +1,7 @@
 import { introPageInfo, machines } from './info';
 import { Component } from '@angular/core';
 import { ModelConfig } from './info';
+// import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,30 @@ export class AppComponent {
 
   public config: ModelConfig = {
     distanceFromModel: 20,
-    modelPath: 'assets/' + machines[0] + 'Inner.glb',
+    modelPath: `https://baha21storage.blob.core.windows.net/oldersystem/${machines[0]}.glb`,
     modelHeight: 1.5,
     onModelLoadProgress: (xhr) => { },
     onModelLoadError: console.error
   };
+
+  // constructor(private http: HttpClient) { }
+
+  // loadModelFromWebsite() {
+  //   const modelURL = this.config.modelPath;
+
+  //   this.http.get(modelURL).subscribe(
+  //     (modelData) => {
+  //       // Process the loaded model data
+  //       console.log('Model loaded successfully:', modelData);
+
+  //       // Perform any additional operations with the loaded model
+  //     },
+  //     (error) => {
+  //       console.error('Failed to load the model:', error);
+  //       // Handle the error appropriately
+  //     }
+  //   );
+  // }
 
   changeMachine(machine: string) {
     // if the past animation is done = if opacity is false
@@ -37,7 +57,8 @@ export class AppComponent {
         this.learningMode = introPageInfo.learningModes[0];
         this.currentMachine = machine;
         if (machine !== '') {
-          this.config.modelPath = `assets/${this.currentMachine}Inner.glb`;
+          this.config.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}.glb`;
+          // this.loadModelFromWebsite();
         }
 
         // end animation (turn opacity to 100%) after all the elements have been added to the dom
