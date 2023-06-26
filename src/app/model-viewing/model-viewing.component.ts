@@ -11,9 +11,11 @@ import { ModelConfig, Details, details, modelPage } from '../info';
 export class ModelViewingComponent implements OnInit {
   listState: string = modelPage.states.hidden;
   states = modelPage.states;
+  modelState: string = "";
 
   isLoaded: boolean = false;
-  partList: { [partName: string]: string; } = {};
+  innerPartsList: { [partName: string]: string; } = {};
+  outerPartsList: { [partName: string]: string; } = {};
   details: Details;
   modelPage = modelPage;
   static isVisited: boolean = false;
@@ -38,6 +40,7 @@ export class ModelViewingComponent implements OnInit {
   ngOnInit(): void {
     const canvas = <HTMLCanvasElement>document.querySelector('#view');
     this.modelService.setHdrEnvironment('https://baha21storage.blob.core.windows.net/oldersystem/light1.hdr');
+    console.log("model component config " + this.config?.modelPath);
     const isLoaded = this.modelService.createModelView(canvas, this.config!);
     this.modelService.partSelect.subscribe(part =>
       this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
@@ -45,7 +48,8 @@ export class ModelViewingComponent implements OnInit {
 
     isLoaded.subscribe(isDone => this.isLoaded = isDone);
 
-    this.partList = details[this.currentMachine].parts;
+    this.innerPartsList = details[this.currentMachine].parts;
+    this.outerPartsList = details[this.currentMachine].outerParts;
 
     document.getElementById("list")?.addEventListener("animationend", ()=> {
       this.listState = (this.listState === this.states.inactive) ? this.states.hidden : this.states.active;
@@ -60,8 +64,26 @@ export class ModelViewingComponent implements OnInit {
     this.listState = (this.listState !== this.states.active) ? this.states.active : this.states.inactive;
   }
 
-  lookAtListObject(name: string) {
+  get configValue() {
+    return this.config;
+  }
+
+  openListObject(name: string, indication: string) {
     this.modelService.lookAtListObject(name);
     this.listState = this.states.inactive;
+    
+    if (indication !== this.modelState) {
+      this.modelState = indication;
+      this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
+      const canvas = <HTMLCanvasElement>document.querySelector('#view');
+      this.modelService.setHdrEnvironment('https://baha21storage.blob.core.windows.net/oldersystem/light1.hdr');
+      const isLoaded = this.modelService.createModelView(canvas, this.config!);
+      this.modelService.partSelect.subscribe(part =>
+        this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
+      );
+
+      isLoaded.subscribe(isDone => this.isLoaded = isDone);
+    }
+
   }
 }

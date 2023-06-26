@@ -1,7 +1,6 @@
 import { introPageInfo, machines } from './info';
 import { Component } from '@angular/core';
 import { ModelConfig } from './info';
-// import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -26,25 +25,6 @@ export class AppComponent {
     onModelLoadError: console.error
   };
 
-  // constructor(private http: HttpClient) { }
-
-  // loadModelFromWebsite() {
-  //   const modelURL = this.config.modelPath;
-
-  //   this.http.get(modelURL).subscribe(
-  //     (modelData) => {
-  //       // Process the loaded model data
-  //       console.log('Model loaded successfully:', modelData);
-
-  //       // Perform any additional operations with the loaded model
-  //     },
-  //     (error) => {
-  //       console.error('Failed to load the model:', error);
-  //       // Handle the error appropriately
-  //     }
-  //   );
-  // }
-
   changeMachine(machine: string) {
     // if the past animation is done = if opacity is false
     // so that the user wouldnt be able to switch pages before the animation is done
@@ -58,7 +38,6 @@ export class AppComponent {
         this.currentMachine = machine;
         if (machine !== '') {
           this.config.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}.glb`;
-          // this.loadModelFromWebsite();
         }
 
         // end animation (turn opacity to 100%) after all the elements have been added to the dom

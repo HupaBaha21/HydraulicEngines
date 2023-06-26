@@ -8,10 +8,12 @@
 <!-- list -->
 <div #list id="list" [class]="listState">
   <h1>{{modelPage.listTitle}}</h1>
-  <p *ngFor="let item of partList | keyvalue" (click)="lookAtListObject(item.key)">-{{item.key}}</p>
+  <p *ngFor="let item of innerPartsList | keyvalue" (click)="openListObject(item.key, 'Inner')">-{{item.key}}</p>
+  <p *ngFor="let item of outerPartsList | keyvalue" (click)="openListObject(item.key, '')">-{{item.key}}</p>
 </div>
 
 <div id="zoom-container">
+  <!-- <img src="https://baha21storage.blob.core.windows.net/oldersystem/GABI-TALKING-BROW2.gif"> -->
   <img class="zoom-buttons" [src]="modelPage.imgs.plus" alt="plus" (click)="zoom(0.1);">
   <img class="zoom-buttons" [src]="modelPage.imgs.minus" alt="minus" (click)="zoom(-0.1);">
   <img class="zoom-buttons" [src]="modelPage.imgs.list" alt="left-arrow" (click)="toggleList()">

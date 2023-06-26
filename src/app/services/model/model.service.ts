@@ -6,7 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
-import { ModelConfig } from '../../info';
+import { ModelConfig, details } from '../../info';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class ModelService {
   private composer? : EffectComposer;
   private model? : Object3D;
   public parts : Object3D[];
-  // private outerParts: {[itemName: string]: string; };
+  private outerParts?: { [itemName: string]: string;};
 
   outlinePass?: OutlinePass;
 
@@ -50,7 +50,6 @@ export class ModelService {
     this.raycaster = new Raycaster();
 
     this.parts = [];
-    // this.outerParts = {};
   }
 
   public zoom(indicator: number) {
@@ -61,8 +60,7 @@ export class ModelService {
   }
 
   public createModelView(canvas: HTMLCanvasElement, config: ModelConfig): Observable<boolean> {
-    console.log("createModelView: ");
-    console.log(config);
+    console.log("createModelView: " + config.modelPath);
     let isLoaded = new BehaviorSubject<boolean>(false);
 
     this.initScene(config);
@@ -217,7 +215,6 @@ export class ModelService {
     //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
       // console.log(event);
-      console.log(this.outlinePass!.selectedObjects[0]);
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
     }
 
@@ -236,12 +233,6 @@ export class ModelService {
     let part = this.findPartByName(name);
     //if this part exists in the object
     if (part !== false) {
-      let state = getModelState();
-      let neededState = getPartPlace();
-      
-      if (state !== neededState) {
-        
-      }
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
@@ -260,9 +251,15 @@ export class ModelService {
     }
   }
 
-  private isOuterPart(name: string) {
+  // public getPartLocation(name: string, currentMachine: string): string {
+  //   this.outerParts = details[currentMachine].outerParts;
+  //   console.log(`name: ${name}, is: ${name in this.outerParts}`);
+  //   if (name in this.outerParts) {
+  //     return "";
+  //   }
 
-  }
+  //   return "Inner";
+  // }
 
   // private searchForOuterObject(name: string){
   //   for (const key in this.outerParts) {
