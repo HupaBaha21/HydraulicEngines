@@ -40,7 +40,6 @@ export class ModelViewingComponent implements OnInit {
   ngOnInit(): void {
     const canvas = <HTMLCanvasElement>document.querySelector('#view');
     this.modelService.setHdrEnvironment('https://baha21storage.blob.core.windows.net/oldersystem/light1.hdr');
-    console.log("model component config " + this.config?.modelPath);
     const isLoaded = this.modelService.createModelView(canvas, this.config!);
     this.modelService.partSelect.subscribe(part =>
       this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)

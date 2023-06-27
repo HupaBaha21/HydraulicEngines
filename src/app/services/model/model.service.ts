@@ -60,7 +60,6 @@ export class ModelService {
   }
 
   public createModelView(canvas: HTMLCanvasElement, config: ModelConfig): Observable<boolean> {
-    console.log("createModelView: " + config.modelPath);
     let isLoaded = new BehaviorSubject<boolean>(false);
 
     this.initScene(config);
@@ -158,10 +157,12 @@ export class ModelService {
     this.scene.add(this.model);
     this.animate();
     this.parts = this.extractChildren(this.model);
+    console.log("children now!");
 
     isLoaded.next(true);
     isLoaded.complete();
 
+    console.log("making all the parts transparent");
     //Set all of the objects parts as transparent so that they could have their opacity changed later.
     this.parts.forEach(part => {
       if(part instanceof Mesh){
@@ -240,7 +241,8 @@ export class ModelService {
 
       this.parts.forEach(part => {
         if(part instanceof Mesh) {
-            part.material.opacity = 0.3;
+            console.log(part.name + " transparent? " + part.material.transparent);
+            part.material.opacity = 0.0;
         }
       });
 

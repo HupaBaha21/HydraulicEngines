@@ -14,25 +14,76 @@ export interface ModelConfig {
 }
 
 export const details: { [machine: string]: { parts: { [itemName: string]: string; }; outerParts: { [itemName: string]: string; }; } } = {
-  HPU: {
-    parts: {
-      middlePinkCube: "middle pink cube",
-      blueBall: "blueBall",
-    },
+  TTU: {
     outerParts: {
-      yellow: "yellow",
-      redBall: "redBall",
-      nowhere: "nwo"
+      sliding_rod: "מוט הזזה",
+      Acoustic_chamber_1: "תא אקוסטי מספר 1",
+      Acoustic_chamber_2: "תא אקוסטי מספר 1",
+      Exhaust_port: "פתח פליטה",
+      Hydraulic_oil_level_door: "דלת מפלס שמן הידראולי",
+      Mooring_rings_1: "טבעות עגינה מספר 1",
+      Mooring_rings_2: "טבעות עגינה מספר 2",
+      Wheels: "גלגלים",
+      Radiator_acoustic_chamber: "תא אקוסטי רדיאטור",
+      Service_door: "דלת שירות",
+      door_1: "דלת מספר 1",
+      Circulation_manifold1: "סעפת סירקולציה מספר 1",
+      Circulation_manifold2: "סעפת סירקולציה מספר 2",
+      Pipe1: "צינור מספר 1",
+      Pipe2: "צינור מספר 2",
+      oil_storage1: "מצר שמן 1",
+      oil_storage2: "מצר שמן 2",
+      door_2: "דלת מספר 2",
+      Circulation_manifold3: "סעפת סירקולציה מספר 3",
+      Pipe3: "צינור מספר 3",
+      oil_storage3: "מצר שמן 3",
+      forklift_operators: "מובילי מלגזה",
+      Compartment_for_storage: "תא לאחסון",
+      Oil_filter_tube: "צינור מסנן שמן",
+      Filling_system_door: "דלת מערכת מילוי",
+      Oil_projector_door1: "דלת מקרן שמן מספר 1",
+      Oil_Projector_door2: "דלת מקרן שמן מספר 2",
+      Oil_projector_door3: "דלת מקרן שמן מספר 3",
+      Hydraulic_system_door: "דלת מערכת הידראולית",
+      Fuel_nozzle: "פיית דלק",
+      Electrical_and_control_panel: "לוח חשמל ובקרה",
+      Control_screen: "מסך שליטה",
+      Fuel_gauge: "מד דלק",
+      Engine_controller: "בקר מנוע",
+      Main_battery_breaker: "מפסק מצברים ראשי",
+      Hour_meter: "מד שעות",
+      Emergency_dead: "מדומם חירום",
+    },
+    parts: {
+      air_cleaning_system: "מערכת ניקוי אוויר",
+      Air_cleaning_faucet1: "ברז לניקוי אוויר מספר 1",
+      Air_cleaning_faucet2: "ברז לניקוי אוויר מספר 2 ",
+      Air_cleaning_faucet3: "ברז לניקוי אוויר מספר 3",
+      Hydraulic_filter_system1: "מסנן מערכת הידראולית מספר 1",
+      Hydraulic_filter_system2: "מסנן מערכת הידראולית מספר 2",
+      Hydraulic_filter_system3: "מסנן מערכת הידראולית מספר 3",
+      Engine: "מנוע",
+      Alternator: "אלטרנטור",
+      battery: "מצבר",
+      Engine_oil_filter: "מסנן שמן מנוע",
+      Engine_oil_filter_opening: "פתח מסנן שמן מנוע",
+      Engine_oil_test_gauge: "מדיד שמן מנוע",
+      Fuel_filter1: "מסנן דלק 1",
+      Fuel_filter2: "מסנן דלק 2",
+      gas_fillter_tier4: "מסנן גזי פליטה מסוג tier4",
+      Transmision_box: "תיבת תמסורת",
+      hydraulic_pumps: "משאבות הידראוליות",
+      Transmission_oil_gauge: "מדיד שמן תמסורת",
+      Transmission_oil_height_gauge: "מדיד גובה שמן תמסורת",
+      Hydraulic_oil_tank: "מיכל שמן הידראולי",
+      Oil_filter_opening: "פתח מסנן שמן",
+      Oil_index: "מד שמן",
     }
   },
-  TTU: {
+  HPU: {
     parts: {
-      Sliding_rod: "מוט הזזה",
-      Acoustic_chamber1: "dfjshfkfdjshfds",
-      gas_fillter__tier_4001: "kskfhakhfksjahkjfsa"
     },
     outerParts: {
-
     }
   }
 }
