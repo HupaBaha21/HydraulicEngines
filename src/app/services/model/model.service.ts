@@ -234,6 +234,7 @@ export class ModelService {
     let part = this.findPartByName(name);
     //if this part exists in the object
     if (part !== false) {
+      // console.table(part);
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
@@ -241,7 +242,6 @@ export class ModelService {
 
       this.parts.forEach(part => {
         if(part instanceof Mesh) {
-            console.log(part.name + " transparent? " + part.material.transparent);
             part.material.opacity = 0.25;
         }
       });

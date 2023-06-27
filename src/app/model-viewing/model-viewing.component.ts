@@ -63,13 +63,7 @@ export class ModelViewingComponent implements OnInit {
     this.listState = (this.listState !== this.states.active) ? this.states.active : this.states.inactive;
   }
 
-  get configValue() {
-    return this.config;
-  }
-
   openListObject(name: string, indication: string) {
-    this.modelService.lookAtListObject(name);
-    this.listState = this.states.inactive;
     
     if (indication !== this.modelState) {
       this.modelState = indication;
@@ -79,10 +73,12 @@ export class ModelViewingComponent implements OnInit {
       const isLoaded = this.modelService.createModelView(canvas, this.config!);
       this.modelService.partSelect.subscribe(part =>
         this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
-      );
-
-      isLoaded.subscribe(isDone => this.isLoaded = isDone);
-    }
-
+        );
+        
+        isLoaded.subscribe(isDone => this.isLoaded = isDone);
+      }
+      
+      this.modelService.lookAtListObject(name);
+      this.listState = this.states.inactive;
   }
 }
