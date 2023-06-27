@@ -64,21 +64,22 @@ export class ModelViewingComponent implements OnInit {
   }
 
   openListObject(name: string, indication: string) {
-    
     if (indication !== this.modelState) {
       this.modelState = indication;
       this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
       const canvas = <HTMLCanvasElement>document.querySelector('#view');
       this.modelService.setHdrEnvironment('https://baha21storage.blob.core.windows.net/oldersystem/light1.hdr');
       const isLoaded = this.modelService.createModelView(canvas, this.config!);
-      this.modelService.partSelect.subscribe(part =>
+      this.modelService.partSelect.subscribe(part => {
         this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
-        );
-        
-        isLoaded.subscribe(isDone => this.isLoaded = isDone);
+        console.log("sdaljdsad" + this.details);
       }
+      );
+        
+      isLoaded.subscribe(isDone => this.isLoaded = isDone);
+    }
       
-      this.modelService.lookAtListObject(name);
-      this.listState = this.states.inactive;
+    this.modelService.lookAtListObject(name);
+    this.listState = this.states.inactive;
   }
 }

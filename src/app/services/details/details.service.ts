@@ -7,9 +7,11 @@ import { Details, details } from '../../info';
 
 export class DetailsService {
   public retrieveDetails(key: string, machine: string) : Details {
-    return {
+    let returnee = {
       title: key.replaceAll('_',' '),
-      text: details[machine].parts[key] || ""
+      text: details[machine].parts[key] || details[machine].outerParts[key] || ""
     };
+    
+    return returnee;
   }
 }

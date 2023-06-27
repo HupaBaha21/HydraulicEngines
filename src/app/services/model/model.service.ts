@@ -157,12 +157,10 @@ export class ModelService {
     this.scene.add(this.model);
     this.animate();
     this.parts = this.extractChildren(this.model);
-    console.log("children now!");
 
     isLoaded.next(true);
     isLoaded.complete();
 
-    console.log("making all the parts transparent");
     //Set all of the objects parts as transparent so that they could have their opacity changed later.
     this.parts.forEach(part => {
       if(part instanceof Mesh){
@@ -215,7 +213,7 @@ export class ModelService {
 
     //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
-      // console.log(event);
+      console.log("from MODEL");
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
     }
 
@@ -252,25 +250,6 @@ export class ModelService {
 
     }
   }
-
-  // public getPartLocation(name: string, currentMachine: string): string {
-  //   this.outerParts = details[currentMachine].outerParts;
-  //   console.log(`name: ${name}, is: ${name in this.outerParts}`);
-  //   if (name in this.outerParts) {
-  //     return "";
-  //   }
-
-  //   return "Inner";
-  // }
-
-  // private searchForOuterObject(name: string){
-  //   for (const key in this.outerParts) {
-  //     if (key === name) {
-  //       return this.outerParts[key];
-  //     }
-  //   }
-  //   return null;
-  // }
 
   private findPartByName(name: string): any {
     for (let i = 0; i < this.parts.length; i++) {
