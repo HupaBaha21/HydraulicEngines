@@ -242,13 +242,13 @@ export class ModelService {
       this.parts.forEach(part => {
         if(part instanceof Mesh) {
             console.log(part.name + " transparent? " + part.material.transparent);
-            part.material.opacity = 0.0;
+            part.material.opacity = 0.25;
         }
       });
 
-      if(this.selectedListObject instanceof Mesh) {
-        this.selectedListObject.material.opacity = 1.0;
-      }
+      // if(this.selectedListObject instanceof Mesh) {
+      //   this.selectedListObject.material.opacity = 1.0;
+      // }
 
     }
   }
