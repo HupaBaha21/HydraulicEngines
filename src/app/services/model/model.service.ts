@@ -210,21 +210,15 @@ export class ModelService {
   private onDocumentMouseDown(event: any) {
     // Reset the orbiting object to the origin point
     this.controls!.target = new Vector3(0,0,0);
+    this.parts.forEach(part => {
+      if(part instanceof Mesh){
+        part.material.opacity = 1.0;
+      }
+    });
 
     //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
-      console.log("from MODEL");
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
-    }
-
-    //If there's a selected part from LIST
-    //User wants to exit the focus of list object
-    else if(this.selectedListObject !== undefined){
-      this.parts.forEach(part => {
-        if(part instanceof Mesh){
-          part.material.opacity = 1.0;
-        }
-      });
     }
   }
 

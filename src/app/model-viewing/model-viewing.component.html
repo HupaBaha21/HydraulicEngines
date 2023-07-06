@@ -8,8 +8,9 @@
 <!-- list -->
 <div #list id="list" [class]="listState">
   <h1>{{modelPage.listTitle}}</h1>
-  <p *ngFor="let item of innerPartsList | keyvalue" (click)="openListObject(item.key, 'Inner')">-{{item.value}} Inner</p>
-  <p *ngFor="let item of outerPartsList | keyvalue" (click)="openListObject(item.key, '')">-{{item.value}} Outer</p>
+  <!-- <p *ngFor="let item of innerPartsList | keyvalue" (click)="openListObject(item.key, 'Inner')">-{{item.value}} Inner</p> -->
+  <p>Outer parts:</p>
+  <p *ngFor="let item of outerPartsList | keyvalue" (click)="openListObject(item.key, '')">-{{item.value}}</p>
 </div>
 
 <div id="zoom-container">
