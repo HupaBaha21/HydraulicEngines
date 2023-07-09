@@ -29,7 +29,6 @@ export class ModelService {
   private composer? : EffectComposer;
   private model? : Object3D;
   public parts : Object3D[];
-  private outerParts?: { [itemName: string]: string;};
 
   outlinePass?: OutlinePass;
 
@@ -64,16 +63,23 @@ export class ModelService {
 
     this.initScene(config);
 
-    const renderer = this.setupRenderer(canvas, config);
-    this.renderer = renderer;
+    this.renderer = this.setupRenderer(canvas);
     this.outlinePass = this.setupOutlinePass(config);
 
-    this.composer = this.setupComposer(renderer, this.outlinePass);
+    this.composer = this.setupComposer(this.renderer, this.outlinePass);
     this.controls = this.setupControls(canvas);
 
     this.loadModel(config, isLoaded);
     this.setupDomEvents();
 
+    return isLoaded;
+  }
+
+  public reloadModel(config: ModelConfig): Observable<boolean> {
+    let isLoaded = new BehaviorSubject<boolean>(false);
+    this.initScene(config);
+    this.loadModel(config, isLoaded);
+    this.setupDomEvents();
     return isLoaded;
   }
 
@@ -95,7 +101,7 @@ export class ModelService {
     // console.log(this.controls);
   }
 
-  private setupRenderer(canvas: HTMLCanvasElement, config: ModelConfig) : WebGLRenderer {
+  private setupRenderer(canvas: HTMLCanvasElement) : WebGLRenderer {
     const renderer = new WebGLRenderer({
       canvas: canvas,
       alpha: true
@@ -184,6 +190,8 @@ export class ModelService {
   }
 
   private animate() {
+    console.log("animate");
+
     requestAnimationFrame(this.animate.bind(this));
 
     this.controls?.update();
@@ -191,6 +199,8 @@ export class ModelService {
   }
 
   private setupDomEvents() {
+    console.log("setupDomEvents");
+
     document.getElementById("view")?.addEventListener('mousemove', event => this.onDocumentMouseHover(event), false);
     document.getElementById("view")?.addEventListener('mousedown', event => this.onDocumentMouseDown(event), false);
     window.addEventListener("resize", () => {
@@ -200,6 +210,8 @@ export class ModelService {
 
   // Fixes the renderer and camera to fit the current window size so that the model looks the same
   private updateRendererSize(){
+    console.log("updateRendererSize");
+
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
     this.camera.aspect = vw/vh;
@@ -208,6 +220,8 @@ export class ModelService {
   }
 
   private onDocumentMouseDown(event: any) {
+    console.log("onDocumentMouseDown");
+
     // Reset the orbiting object to the origin point
     this.controls!.target = new Vector3(0,0,0);
     this.parts.forEach(part => {
@@ -219,10 +233,13 @@ export class ModelService {
     //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
+      console.log(this.outlinePass!.selectedObjects[0].name);
     }
   }
 
   public lookAtListObject(name: string){
+    console.log("lookAtListObject");
+
     let part = this.findPartByName(name);
     //if this part exists in the object
     if (part !== false) {
@@ -256,6 +273,7 @@ export class ModelService {
   }
 
   private onDocumentMouseHover(event: any) {
+
     if (!this.model || !this.parts || this.disableRaycasting) {
       if (this.disableRaycasting) {
         this.outlinePass!.selectedObjects = [];

@@ -12,6 +12,7 @@ export class ModelViewingComponent implements OnInit {
   listState: string = modelPage.states.hidden;
   states = modelPage.states;
   modelState: string = "";
+  searchText: string = "";
 
   isLoaded: boolean = false;
   innerPartsList: { [partName: string]: string; } = {};
@@ -65,21 +66,32 @@ export class ModelViewingComponent implements OnInit {
 
   openListObject(name: string, indication: string) {
     if (indication !== this.modelState) {
+      this.isLoaded = false;
       this.modelState = indication;
       this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
-      const canvas = <HTMLCanvasElement>document.querySelector('#view');
-      this.modelService.setHdrEnvironment('https://baha21storage.blob.core.windows.net/oldersystem/light1.hdr');
-      const isLoaded = this.modelService.createModelView(canvas, this.config!);
+
+      const isLoaded = this.modelService.reloadModel(this.config!);
       this.modelService.partSelect.subscribe(part => {
         this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
-        console.log("sdaljdsad" + this.details);
+        console.log(this.details);
       }
       );
         
-      isLoaded.subscribe(isDone => this.isLoaded = isDone);
+      isLoaded.subscribe(isDone => {
+        this.isLoaded = isDone;
+        console.log("in is loaded");
+        // if(isLoaded){
+        //   console.log("in if");
+        //   this.modelService.lookAtListObject(name);
+        //   this.listState = this.states.inactive;
+        // }
+      });
     }
-      
+
     this.modelService.lookAtListObject(name);
     this.listState = this.states.inactive;
+    // else {
+    // }
+      
   }
 }
