@@ -1,3 +1,13 @@
+#search-box {
+  height: 6%;
+  width: 80%;
+  border-radius: 13px;
+  color: black;
+  font-size: 128%;
+  border: none;
+  padding-right: 4%;
+}
+
 #list {
   --listHeight: 80%;
   background-color: #1e67ab;
@@ -60,13 +70,14 @@
   background-color: #addef2;
   height: 10%;
   position: absolute;
-  width: 38%;
-  min-width: 212px;
+  width: 19%;
+  min-width: 77px;
   min-height: 60px;
   z-index: 10;
   right: 0;
   top: 6%;
   display: flex;
+  max-width: 81px;
   border-radius: 26px 0px 0px 26px;
   align-items: center;
   justify-content: center;

@@ -9,17 +9,24 @@
 <div #list id="list" [class]="listState">
   <h1>{{modelPage.listTitle}}</h1>
   <h3>חיפוש</h3>
-  <input type="text" placeholder="חפש חלק" [(ngModel)]="searchText">
-  <p>Inner parts:</p>
+  <input id="search-box" type="text" placeholder="חפש חלק" [(ngModel)]="searchText">
   <span *ngFor="let item of innerPartsList | keyvalue"><p *ngIf="item.value.includes(searchText)" (click)="openListObject(item.key, 'Inner')">-{{item.value}}</p></span>
-  <p>Outer parts:</p>
   <span *ngFor="let item of outerPartsList | keyvalue"><p *ngIf="item.value.includes(searchText)" (click)="openListObject(item.key, '')">-{{item.value}}</p></span>
+  <div *ngIf="easterArr.includes(searchText)">
+    <div *ngIf="searchText === 'עד מתי'; else right">
+      אוג 22 עייפות
+    </div>
+    <ng-template #right>
+      נכון מאוד!!!
+      <button><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">לחצו עליי</a></button>
+    </ng-template>
+  </div>
 </div>
 
 <div id="zoom-container">
   <!-- <img src="https://baha21storage.blob.core.windows.net/oldersystem/GABI-TALKING-BROW2.gif"> -->
-  <img class="zoom-buttons" [src]="modelPage.imgs.plus" alt="plus" (click)="zoom(0.1);">
-  <img class="zoom-buttons" [src]="modelPage.imgs.minus" alt="minus" (click)="zoom(-0.1);">
+  <!-- <img class="zoom-buttons" [src]="modelPage.imgs.plus" alt="plus" (click)="zoom(0.1);">
+  <img class="zoom-buttons" [src]="modelPage.imgs.minus" alt="minus" (click)="zoom(-0.1);"> -->
   <img class="zoom-buttons" [src]="modelPage.imgs.list" alt="left-arrow" (click)="toggleList()">
 </div>
 

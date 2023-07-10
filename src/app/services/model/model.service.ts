@@ -94,13 +94,6 @@ export class ModelService {
     return this.camera;
   }
 
-  public printCamera(formerCamera: PerspectiveCamera) {
-    console.log(this.camera === formerCamera);
-    // console.log(this.model);
-    // console.log(this.composer);
-    // console.log(this.controls);
-  }
-
   private setupRenderer(canvas: HTMLCanvasElement) : WebGLRenderer {
     const renderer = new WebGLRenderer({
       canvas: canvas,
@@ -190,8 +183,6 @@ export class ModelService {
   }
 
   private animate() {
-    console.log("animate");
-
     requestAnimationFrame(this.animate.bind(this));
 
     this.controls?.update();
@@ -199,8 +190,6 @@ export class ModelService {
   }
 
   private setupDomEvents() {
-    console.log("setupDomEvents");
-
     document.getElementById("view")?.addEventListener('mousemove', event => this.onDocumentMouseHover(event), false);
     document.getElementById("view")?.addEventListener('mousedown', event => this.onDocumentMouseDown(event), false);
     window.addEventListener("resize", () => {
@@ -210,8 +199,6 @@ export class ModelService {
 
   // Fixes the renderer and camera to fit the current window size so that the model looks the same
   private updateRendererSize(){
-    console.log("updateRendererSize");
-
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
     this.camera.aspect = vw/vh;
@@ -220,8 +207,6 @@ export class ModelService {
   }
 
   private onDocumentMouseDown(event: any) {
-    console.log("onDocumentMouseDown");
-
     // Reset the orbiting object to the origin point
     this.controls!.target = new Vector3(0,0,0);
     this.parts.forEach(part => {
@@ -233,13 +218,10 @@ export class ModelService {
     //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
-      console.log(this.outlinePass!.selectedObjects[0].name);
     }
   }
 
   public lookAtListObject(name: string){
-    console.log("lookAtListObject");
-
     let part = this.findPartByName(name);
     //if this part exists in the object
     if (part !== false) {
@@ -255,9 +237,9 @@ export class ModelService {
         }
       });
 
-      // if(this.selectedListObject instanceof Mesh) {
-      //   this.selectedListObject.material.opacity = 1.0;
-      // }
+      if(this.selectedListObject instanceof Mesh) {
+        this.selectedListObject.material.opacity = 1.0;
+      }
 
     }
   }
