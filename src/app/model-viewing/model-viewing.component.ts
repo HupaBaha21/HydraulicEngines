@@ -14,18 +14,11 @@ export class ModelViewingComponent implements OnInit {
   modelState: string = "";
   searchText: string = "";
   easterArr: string[] = [
-    "עומר צעיר",
     "כיכר הכדורים לוד",
-    "לא ניתן לדרגות הרוע להביס את דרגות הזרוע",
     "שמעת על ניהול ידע?",
-    "עד מתי",
-    "עד מתי?",
-    "כמה עוד?",
     "איתי גולדדצמן",
     "דניאלה המדרובה",
     "אין מלחמה בבה סינג סה",
-    "מיסטר יועלם",
-    "נועה נועה נועה",
   ];
 
   isLoaded: boolean = false;
@@ -70,37 +63,32 @@ export class ModelViewingComponent implements OnInit {
     });
   }
 
-  zoom(indicator: number) {
-    this.modelService.zoom(indicator);
-  }
-
   toggleList() {
     this.listState = (this.listState !== this.states.active) ? this.states.active : this.states.inactive;
   }
 
+  resetView() {
+    this.modelService.resetView();
+  }
+
   openListObject(name: string, indication: string) {
     if (indication !== this.modelState) {
-      console.log("not current, need to switch");
       this.isLoaded = false;
       this.modelState = indication;
       this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
 
       const isLoaded = this.modelService.reloadModel(this.config!);
-      // this.modelService.partSelect.subscribe(part => {
-      //   this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine);
-      // }
-      // );
         
       isLoaded.subscribe(isDone => {
-        this.isLoaded = isDone;
         if(isLoaded){
+          this.isLoaded = isDone;
           this.modelService.lookAtListObject(name);
           this.listState = this.states.inactive;
         }
       });
     }
+    
     else {
-      console.log("current");
       this.modelService.lookAtListObject(name);
       this.listState = this.states.inactive;
     }

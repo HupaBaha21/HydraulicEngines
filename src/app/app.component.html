@@ -34,7 +34,7 @@
                 </div>
             </ng-container>
             <ng-template #machinePageBottom>
-                <app-presentation *ngIf="learningMode !== introPageInfo.learningModes[0]" [currentMachine]="currentMachine"></app-presentation>
+                <app-presentation [hidden]="learningMode === introPageInfo.learningModes[0]" [currentMachine]="currentMachine"></app-presentation>
                 <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"></app-model-viewing>
             </ng-template>
         </div>

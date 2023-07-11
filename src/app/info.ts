@@ -100,7 +100,7 @@ export const introPageInfo = {
     hupa: "../assets/imgs/hupa.png"
   },
   goBackArrow: "../assets/imgs/goBackAsset 10.png",
-  pageTitle: "שלום וברוכים הבאים לאתר של דניאלה!",
+  pageTitle: "ספקי כוח הידראוליים תפעול והכרה",
   menuTitle: "בחרו מכונה",
   learningModes: [
     "view",
@@ -122,6 +122,7 @@ export const modelPage = {
     plus: "../assets/imgs/plus.png",
     minus: "../assets/imgs/minus.png",
     list: "../assets/imgs/list.png",
+    reset: "../assets/imgs/reset.png",
   },
   listTitle: "רשימת חלקים:",
   explanationTitle: "הסבר",

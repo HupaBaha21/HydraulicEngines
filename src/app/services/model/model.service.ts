@@ -206,14 +206,18 @@ export class ModelService {
     this.renderer.setSize(vw, vh);
   }
 
-  private onDocumentMouseDown(event: any) {
-    // Reset the orbiting object to the origin point
+  public resetView() {
     this.controls!.target = new Vector3(0,0,0);
     this.parts.forEach(part => {
       if(part instanceof Mesh){
         part.material.opacity = 1.0;
       }
     });
+    this.outlinePass!.selectedObjects = [];
+  }
+
+  private onDocumentMouseDown(event: any) {
+    this.resetView();
 
     //If there's a selected part from MODEL
     if (this.outlinePass!.selectedObjects.length && !event.button) {
@@ -225,7 +229,6 @@ export class ModelService {
     let part = this.findPartByName(name);
     //if this part exists in the object
     if (part !== false) {
-      // console.table(part);
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);

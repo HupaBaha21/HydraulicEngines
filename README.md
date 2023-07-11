@@ -26,7 +26,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-## list
-- check why there is no outline sometimes
-- make other parts transparent when choosing a list thing
-- maybe, the opacity of the big thing isnt going down because of parent child connection (the big thing's opacity is changed when the child's opacity is turned back up!!!!)
+## to do list
+- myidf enter at start ("hello nam!")
++ hidden instead of ngif at model viewing component
+- fix light
++ refresh button near list button

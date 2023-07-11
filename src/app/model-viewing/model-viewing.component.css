@@ -66,25 +66,25 @@
   overflow: auto;
 }
 
-#zoom-container {
+#btn-container {
   background-color: #addef2;
   height: 10%;
   position: absolute;
-  width: 19%;
+  width: 32%;
   min-width: 77px;
   min-height: 60px;
   z-index: 10;
   right: 0;
   top: 6%;
   display: flex;
-  max-width: 81px;
+  max-width: 120px;
   border-radius: 26px 0px 0px 26px;
   align-items: center;
   justify-content: center;
   padding-left: 1%;
 }
 
-.zoom-buttons {
+.btn-buttons {
   height: 69%;
   min-height: 43px;
   margin-left: 2%;
