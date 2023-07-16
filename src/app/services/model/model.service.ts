@@ -213,7 +213,7 @@ export class ModelService {
         part.material.opacity = 1.0;
       }
     });
-    this.outlinePass!.selectedObjects = [];
+    // this.outlinePass!.selectedObjects = [];
   }
 
   private onDocumentMouseDown(event: any) {
