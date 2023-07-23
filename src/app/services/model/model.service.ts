@@ -8,6 +8,7 @@ import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { ModelConfig, details } from '../../info';
 import { BehaviorSubject, Observable } from 'rxjs';
+import * as THREE from 'three';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class ModelService {
   private scene : Scene;
   private camera : PerspectiveCamera;
   private raycaster : Raycaster;
+  private light: THREE.AmbientLight;
 
   private controls? : OrbitControls;
   private composer? : EffectComposer;
@@ -47,6 +49,7 @@ export class ModelService {
     this.scene = new Scene();
     this.camera = new PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 70);
     this.raycaster = new Raycaster();
+    this.light = new THREE.AmbientLight(0xffffff, 0.5)
 
     this.parts = [];
   }
@@ -87,6 +90,10 @@ export class ModelService {
     this.scene.clear();
     this.camera.position.setZ(config.distanceFromModel);
     this.camera.zoom = 1;
+
+    this.light.position.copy(this.camera.position);
+    this.scene.add(this.light);
+
     this.camera.updateProjectionMatrix();
   }
 
@@ -105,6 +112,7 @@ export class ModelService {
     renderer.setSize(vw, vh);
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.toneMappingExposure = 2; // for outline
+    renderer.shadowMapEnabled = false;
 
     return renderer;
   }
@@ -292,25 +300,26 @@ export class ModelService {
     this.rgbeLoader.load(path, texture => {
       texture.mapping = EquirectangularReflectionMapping;
       this.scene.environment = texture;
+      // this.scene.background = texture;
       texture.dispose();
     });
   }
 
-  public setHdrBackground(path: string) {
-    this.rgbeLoader.load(path, texture => {
-      texture.mapping = EquirectangularReflectionMapping;
-      this.scene.background = texture;
-      texture.dispose();
-   });
-  }
+  // public setHdrBackground(path: string) {
+  //   this.rgbeLoader.load(path, texture => {
+  //     texture.mapping = EquirectangularReflectionMapping;
+  //     this.scene.background = texture;
+  //     texture.dispose();
+  //  });
+  // }
 
-  public setLdrEnvironment(path: string) {
-    this.textureLoader.load(path, texture => {
-      texture.mapping = EquirectangularReflectionMapping;
-      this.scene.environment = texture;
-      texture.dispose();
-    });
-  }
+  // public setLdrEnvironment(path: string) {
+  //   this.textureLoader.load(path, texture => {
+  //     texture.mapping = EquirectangularReflectionMapping;
+  //     this.scene.environment = texture;
+  //     texture.dispose();
+  //   });
+  // }
 
   public setLdrBackground(path: string) {
     this.textureLoader.load(path, texture => {

@@ -29,5 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## to do list
 - myidf enter at start ("hello nam!")
 + hidden instead of ngif at model viewing component
-- fix light
++ fix light
 + refresh button near list button
+- change font on title 
+- HPU part list
+ 
