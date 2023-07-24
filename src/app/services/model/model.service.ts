@@ -241,6 +241,7 @@ export class ModelService {
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
       this.controls!.target = this.selectedListObject!.position;
+      console.log();
 
       this.parts.forEach(part => {
         if(part instanceof Mesh) {
@@ -248,9 +249,9 @@ export class ModelService {
         }
       });
 
-      if(this.selectedListObject instanceof Mesh) {
-        this.selectedListObject.material.opacity = 1.0;
-      }
+      // if(this.selectedListObject instanceof Mesh) {
+      //   this.selectedListObject.material.opacity = 1.0;
+      // }
 
     }
   }
