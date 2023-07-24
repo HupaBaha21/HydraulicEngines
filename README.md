@@ -27,10 +27,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## to do list
-- myidf enter at start ("hello nam!")
 + hidden instead of ngif at model viewing component
 + fix light
 + refresh button near list button
++ HPU part list
+- myidf enter at start ("hello nam!")
 - change font on title 
-- HPU part list
  
