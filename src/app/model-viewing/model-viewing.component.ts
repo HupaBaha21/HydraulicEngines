@@ -13,7 +13,7 @@ export class ModelViewingComponent implements OnInit {
   states = modelPage.states;
   modelPage = modelPage;
   imgs = imgs;
-  
+
   modelState: string = "";
   searchText: string = "";
   easterArr: string[] = [
@@ -28,7 +28,6 @@ export class ModelViewingComponent implements OnInit {
   innerPartsList: { [partName: string]: string; } = {};
   outerPartsList: { [partName: string]: string; } = {};
   details: Details;
-  static isVisited: boolean = false;
   @Input() currentMachine: string = '';
   @Input() config?: ModelConfig;
 
@@ -37,16 +36,6 @@ export class ModelViewingComponent implements OnInit {
       title: "",
       text: ""
     }
-  }
-
-  ngOnDestroy() {
-    if (!ModelViewingComponent.isVisited) {
-      ModelViewingComponent.isVisited = true;
-    }
-  }
-
-  get isVisited() {
-    return ModelViewingComponent.isVisited;
   }
 
   ngOnInit(): void {

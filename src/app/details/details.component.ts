@@ -1,4 +1,4 @@
-  import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+  import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
   import { ModelService } from '../services/model/model.service';
   import { modelPage, Details, imgs } from '../info';
 
@@ -12,8 +12,8 @@
     imgs = imgs;
 
     modelService: ModelService;
+    static isVisited: boolean = false;
     @Input() isVisible = true;
-    @Input() isVisited = false;
     @Input() details: Details = {
       title: 'title',
       text: 'text'
@@ -23,17 +23,17 @@
       this.modelService = modelService;
     }
 
+    ngOnDestroy() {
+      if (!DetailsComponent.isVisited) {
+        DetailsComponent.isVisited = true;
+      }
+    }
+
+    get isVisited() {
+      return DetailsComponent.isVisited;
+    }
+
     ngOnChanges(changes: SimpleChanges): void {
       this.isVisible = true;
-    }
-
-    getTypeOfDetails() {
-      console.log(typeof this.details);
-      return typeof this.details;
-    }
-
-    typeof(v: any) {
-      console.log(typeof v);
-      return typeof v;
     }
 }
