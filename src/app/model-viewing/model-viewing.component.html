@@ -19,11 +19,11 @@
 </div>
 
 <div id="btn-container">
-  <img class="btn-buttons" [src]="modelPage.imgs.list" alt="list" (click)="toggleList()">
-  <img class="btn-buttons" [src]="modelPage.imgs.reset" alt="reset" (click)="resetView()">
+  <img class="btn-buttons" [src]="imgs['menu']" alt="menu" (click)="toggleList()">
+  <img class="btn-buttons" [src]="imgs['reset']" alt="reset" (click)="resetView()">
 </div>
 
 
 <canvas id="view"></canvas>
 
-<app-details [isVisible]="true" [details]="this.details"></app-details>
+<app-details [isVisible]="true" [details]="this.details" [isVisited]="isVisited"></app-details>

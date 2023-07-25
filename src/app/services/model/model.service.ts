@@ -235,12 +235,16 @@ export class ModelService {
 
   public lookAtListObject(name: string){
     let part = this.findPartByName(name);
+    console.log(part);
     //if this part exists in the object
     if (part !== false) {
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
       this.controls!.target = this.selectedListObject!.position;
+      console.log();
+      console.log(this.controls!.target);
+      console.log(this.selectedListObject!.position);
       console.log();
 
       this.parts.forEach(part => {

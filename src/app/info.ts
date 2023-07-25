@@ -157,18 +157,20 @@ export const modelPage = {
     inactive: "inactive",
     active: "active"
   },
-  imgs: {
-    plus: "../assets/imgs/plus.png",
-    minus: "../assets/imgs/minus.png",
-    list: "../assets/imgs/list.png",
-    reset: "../assets/imgs/reset.png",
-  },
   listTitle: "רשימת חלקים:",
   explanationTitle: "הסבר",
-  explanationText: `זהו מודל תלת מימדי של המכונה.
-  ניתן לסובב אותו בעזרת האצבע, להגדיל ולהקטין בעזרת כפתורי ההגדלה וההקטנה, ולראות את רשימת החלקים שלו בלחיצה על כפתור החץ.
-  בנוסף, ניתן להתמקד באחד החלקים על ידי לחיצה על חלק, והחלק יופיע במרכז המסך.`
+  explanationText: `זהו מודל תלת מימדי של הספק.
+    ניתן לסובב אותו בעזרת האצבע.`,
+  explanationImgs: {
+    menu: 'בלחיצה על כפתור התפריט, תיפתח קשימת כל החלקים במודל.',
+    reset: 'בלחיצה על כפתור אתחול המודל, המודל יאותחל.'
+  }
 }
+
+export const imgs: {[machine: string]: string} = {
+  menu: "../assets/imgs/menu.png",
+  reset: "../assets/imgs/reset.png",
+};
 
 export const presentationPage = {
   turnPhoneTitle: "סובבו את הטלפון",

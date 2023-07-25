@@ -42,7 +42,7 @@
 
 .top-machine {
   height: var(--top-machine);
-  
+
   #go-back {
     left: 7%;
     position: absolute;
@@ -75,7 +75,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      
+
       .nav-icons {
         min-height: 24px;
         height: 47%;
@@ -110,12 +110,12 @@
   width: 100%;
   bottom: 0;
   overflow: auto;
-  border-radius: 22px;
+  border-radius: 22px 22px 0px 0px;
 }
 
 .bottom-intro {
   height: var(--bottom-intro);
-  
+
   #menu-title {
     margin: 10% 0%;
     background-color: #addef2;
@@ -128,22 +128,22 @@
     padding: 10px 0px 0px 0px;
     min-height: 58px;
   }
-  
+
   #machines-container {
     display: flex;
     align-items: center;
     height: 57%;
     flex-direction: column;
-  
+
     .button {
       position: relative;
       margin: 5% 0%;
     }
-  
+
     .right-button {
       transform: rotateY(180deg);
     }
-  
+
     .button-title {
       width: 100%;
       position: absolute;

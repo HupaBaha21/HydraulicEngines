@@ -1,3 +1,4 @@
+<!-- <app-idf-login></app-idf-login> -->
 <div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" class="generic-animation" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [ngClass]="turn + 'Top'">
         <div id="signs">
@@ -8,7 +9,7 @@
             <ng-container *ngIf="currentMachine === ''; else machinePageTop" >
                 <h5 id="title">{{introPageInfo.pageTitle}}</h5>
             </ng-container>
-    
+
             <ng-template #machinePageTop>
                 <img id="go-back" [src]="introPageInfo.goBackArrow" alt="go back" (click)="changeMachine('')">
                 <div id="nav-machine">
@@ -51,6 +52,6 @@
 
         ניצן היא ברת מזל
         לא עלתה שמירות כמו עומר חמל
-        
+
     </div>
 </div>

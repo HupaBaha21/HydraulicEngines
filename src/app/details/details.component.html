@@ -1,7 +1,16 @@
-<div class="details-container" dir="rtl" *ngIf="this.isVisible && this.details.text != ''" (mouseenter)="this.modelService.disableRaycasting = true" (mouseleave)="this.modelService.disableRaycasting = false">
-    <div class="details">
-        <h3 class="title">{{this.details.title}}</h3>
-        <p class="text">{{this.details.text}}</p>
+<div class="details-container" dir="rtl" *ngIf="this.isVisible" (mouseenter)="this.modelService.disableRaycasting = true" (mouseleave)="this.modelService.disableRaycasting = false">
+  <div class="details" *ngIf="isVisited">
+    <h3 class="title">{{this.details.title}}</h3>
+    <p class="text">{{this.details.text}}</p>
+  </div>
+
+  <div class="details" *ngIf="!isVisited">
+    <h3 class="title">{{this.modelPage.explanationTitle}}</h3>
+    <p class="text">{{this.modelPage.explanationText}}</p>
+    <div class="explainedImg" *ngFor="let explainedImg of modelPage.explanationImgs | keyvalue">
+      <p class="text">{{explainedImg.value}}</p>
+      <img [src]="imgs[explainedImg.key]" [alt]="explainedImg.key">
     </div>
-    <button class="close-button" (click)="this.isVisible = false; this.modelService.disableRaycasting = false"><i class="bi bi-x"></i></button>
+  </div>
+  <button class="close-button" (click)="this.isVisible = false; this.modelService.disableRaycasting = false"><i class="bi bi-x"></i></button>
 </div>

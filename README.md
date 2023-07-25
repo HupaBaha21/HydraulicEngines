@@ -31,6 +31,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 + fix light
 + refresh button near list button
 + HPU part list
++ change font on title
 - myidf enter at start ("hello nam!")
-- change font on title 
+- fix hpu + ttu outer model, probably hirarchy problems
+- change title of url in azure
+- instead of arrow icon, menu (three lines) instead.
+- insert examples of the icons in the explanation "details"
+- check each item and see it's all working
  
