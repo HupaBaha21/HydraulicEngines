@@ -1,5 +1,5 @@
-<!-- <app-idf-login></app-idf-login> -->
-<div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
+<app-idf-login [hidden]="user !== undefined" (userLogged)="setUser($event)"></app-idf-login>
+<div *ngIf="user" class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" class="generic-animation" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [ngClass]="turn + 'Top'">
         <div id="signs">
             <img [src]="introPageInfo.signs.airForce" alt="airforce" class="signs air-force">
@@ -7,7 +7,8 @@
         </div>
         <div [class.opacityshake]="opacity">
             <ng-container *ngIf="currentMachine === ''; else machinePageTop" >
-                <h5 id="title">{{introPageInfo.pageTitle}}</h5>
+                <!-- <h5 id="title">{{introPageInfo.pageTitle}}</h5> -->
+                <h5 id="title">{{introPageInfo.greeting}} {{user.name}}</h5>
             </ng-container>
 
             <ng-template #machinePageTop>

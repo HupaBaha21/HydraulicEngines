@@ -1,6 +1,7 @@
 import { introPageInfo, machines } from './info';
 import { Component } from '@angular/core';
 import { ModelConfig } from './info';
+import { AccountInfo } from '@azure/msal-browser';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
   machines = machines;
   learningModes = introPageInfo.learningModes;
   learningMode: string = introPageInfo.learningModes[0];
+  user!: AccountInfo;
 
   currentMachine: string = '';
   turn: string = '';
@@ -24,6 +26,10 @@ export class AppComponent {
     onModelLoadProgress: (xhr) => { },
     onModelLoadError: console.error
   };
+
+  setUser(user: AccountInfo) {
+    this.user = user;
+  }
 
   changeMachine(machine: string) {
     // if the past animation is done = if opacity is false

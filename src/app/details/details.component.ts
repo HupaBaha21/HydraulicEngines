@@ -12,8 +12,8 @@
     imgs = imgs;
 
     modelService: ModelService;
-    static isVisited: boolean = false;
     @Input() isVisible = true;
+    @Input() isVisited = false;
     @Input() details: Details = {
       title: 'title',
       text: 'text'
@@ -21,16 +21,6 @@
 
     constructor(modelService: ModelService) {
       this.modelService = modelService;
-    }
-
-    ngOnDestroy() {
-      if (!DetailsComponent.isVisited) {
-        DetailsComponent.isVisited = true;
-      }
-    }
-
-    get isVisited() {
-      return DetailsComponent.isVisited;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
