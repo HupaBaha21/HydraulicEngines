@@ -1,4 +1,4 @@
-<app-idf-login [hidden]="user !== undefined" (userLogged)="setUser($event)"></app-idf-login>
+<app-idf-login *ngIf="!user" (userLogged)="setUser($event)"></app-idf-login>
 <div *ngIf="user" class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" class="generic-animation" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [ngClass]="turn + 'Top'">
         <div id="signs">

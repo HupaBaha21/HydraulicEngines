@@ -169,11 +169,11 @@ export class ModelService {
     isLoaded.complete();
 
     //Set all of the objects parts as transparent so that they could have their opacity changed later.
-    this.parts.forEach(part => {
-      if(part instanceof Mesh){
-        part.material.transparent = true;
-      }
-    });
+    // this.parts.forEach(part => {
+    //   if(part instanceof Mesh){
+    //     part.material.transparent = true;
+    //   }
+    // });
   }
 
   private extractChildren(model : Object3D) : Object3D[] {
@@ -216,11 +216,11 @@ export class ModelService {
 
   public resetView() {
     this.controls!.target = new Vector3(0,0,0);
-    this.parts.forEach(part => {
-      if(part instanceof Mesh){
-        part.material.opacity = 1.0;
-      }
-    });
+    // this.parts.forEach(part => {
+    //   if(part instanceof Mesh){
+    //     part.material.opacity = 1.0;
+    //   }
+    // });
     // this.outlinePass!.selectedObjects = [];
   }
 
@@ -242,16 +242,12 @@ export class ModelService {
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
       this.controls!.target = this.selectedListObject!.position;
-      console.log();
-      console.log(this.controls!.target);
-      console.log(this.selectedListObject!.position);
-      console.log();
 
-      this.parts.forEach(part => {
-        if(part instanceof Mesh) {
-            part.material.opacity = 0.25;
-        }
-      });
+      // this.parts.forEach(part => {
+      //   if(part instanceof Mesh) {
+      //       part.material.opacity = 0.25;
+      //   }
+      // });
 
       // if(this.selectedListObject instanceof Mesh) {
       //   this.selectedListObject.material.opacity = 1.0;
@@ -271,7 +267,6 @@ export class ModelService {
   }
 
   private onDocumentMouseHover(event: any) {
-
     if (!this.model || !this.parts || this.disableRaycasting) {
       if (this.disableRaycasting) {
         this.outlinePass!.selectedObjects = [];

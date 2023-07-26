@@ -14,18 +14,11 @@ export class IdfLoginComponent implements OnInit {
   constructor(private msalService: MsalService) { }
 
   ngOnInit(): void {
-    console.log(this.msalService.instance.getActiveAccount());
-    if (this.msalService.instance.getActiveAccount() !== null) {
-      this.userLogged.emit(this.msalService.instance.getActiveAccount());
-    } else {
-      this.msalService.instance.handleRedirectPromise().then(
-        res => {
-          if (res != null && res.account != null) {
-            this.msalService.instance.setActiveAccount(res.account);
-            this.userLogged.emit(res.account);
-          }
-        }
-      );
+    if (sessionStorage.getItem('account')) {
+      const acc = JSON.parse(sessionStorage.getItem('account')!);
+      console.log(acc);
+      this.msalService.instance.setActiveAccount(acc);
+      this.userLogged.emit(acc);
     }
   }
 
@@ -34,14 +27,27 @@ export class IdfLoginComponent implements OnInit {
   }
 
   logIn() {
-    this.msalService.loginRedirect();
-    // this.msalService.loginPopup().subscribe((response: AuthenticationResult) => {
-    //   this.msalService.instance.setActiveAccount(response.account)
-    // });
+    this.msalService.loginPopup().subscribe(
+      (response: AuthenticationResult) => {
+        this.msalService.instance.setActiveAccount(response.account)
+        this.userLogged.emit(response.account);
+        const jsonAcc = JSON.stringify(response.account);
+        sessionStorage.setItem('account', jsonAcc);
+      },
+      (error: any) => {
+        console.log(error)
+      },
+      () => {
+        console.log("complete");
+      }
+    );
   }
 
   logOut() {
     this.msalService.logout();
+    this.msalService.instance.setActiveAccount(null);
+    this.userLogged.emit(null);
+    sessionStorage.clear();
   }
 
 }

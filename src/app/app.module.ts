@@ -8,7 +8,6 @@ import { PresentationComponent } from './presentation/presentation.component';
 import { IdfLoginComponent } from './idf-login/idf-login.component';
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { MSAL_INSTANCE, MsalModule, MsalService } from '@azure/msal-angular';
 import { IPublicClientApplication, PublicClientApplication } from '@azure/msal-browser';
 
@@ -16,8 +15,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
       clientId: 'c25247c6-3cd6-4a30-8af2-7262a89b31c4',
-      redirectUri: 'http://localhost:57537',
-
+      redirectUri: 'http://localhost:63161',
     }
   })
 }
