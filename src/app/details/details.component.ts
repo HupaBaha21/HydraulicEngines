@@ -21,7 +21,6 @@
     constructor(modelService: ModelService) {
       this.modelService = modelService;
       this.isClosed = DetailsComponent.isVisited;
-      console.log(this.isClosed);
     }
 
     ngOnDestroy() {

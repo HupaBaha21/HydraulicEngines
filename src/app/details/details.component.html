@@ -1,12 +1,12 @@
-<div *ngIf="!isClosed && (details.text !== '' || (details.text === '' && !getIsVisited()))" class="details-container" dir="rtl" (mouseenter)="this.modelService.disableRaycasting = true" (mouseleave)="this.modelService.disableRaycasting = false">
+<div *ngIf="!isClosed && (details.title !== '' && details.text !== '' || (details.title === '' && details.text === '' && !getIsVisited()))" class="details-container" dir="rtl" (mouseenter)="this.modelService.disableRaycasting = true" (mouseleave)="this.modelService.disableRaycasting = false">
 
-  <div class="details" *ngIf="details.text !== ''">
+  <div class="details" *ngIf="details.title !== '' && details.text !== ''">
     <h3 class="title">{{this.details.title}}</h3>
     <p class="text">{{this.details.text}}</p>
     <button class="close-button" (click)="isClosed = true; this.modelService.disableRaycasting = false"><i class="bi bi-x"></i></button>
   </div>
 
-  <div class="details" *ngIf="details.text === '' && !getIsVisited()">
+  <div class="details" *ngIf="details.title === '' && details.text === '' && !getIsVisited()">
     <div>
       <h3 class="title">{{this.modelPage.explanationTitle}}</h3>
       <p class="text">{{this.modelPage.explanationText}}</p>

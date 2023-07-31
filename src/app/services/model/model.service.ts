@@ -111,8 +111,7 @@ export class ModelService {
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
     renderer.setSize(vw, vh);
     renderer.toneMapping = ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 2; // for outline
-    renderer.shadowMapEnabled = false;
+    renderer.toneMappingExposure = 3; // for outline
 
     return renderer;
   }
@@ -241,7 +240,7 @@ export class ModelService {
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
-      this.controls!.target = this.selectedListObject!.position;
+
 
       // this.parts.forEach(part => {
       //   if(part instanceof Mesh) {
@@ -320,12 +319,4 @@ export class ModelService {
   //     texture.dispose();
   //   });
   // }
-
-  public setLdrBackground(path: string) {
-    this.textureLoader.load(path, texture => {
-      texture.mapping = EquirectangularReflectionMapping;
-      this.scene.background = texture;
-      texture.dispose();
-    });
-  }
 }
