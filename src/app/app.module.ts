@@ -15,7 +15,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
       clientId: 'c25247c6-3cd6-4a30-8af2-7262a89b31c4',
-      redirectUri: 'http://localhost:63161',
+      redirectUri: 'http://localhost:4200',
     }
   })
 }

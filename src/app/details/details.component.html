@@ -1,4 +1,4 @@
-<div *ngIf="!isClosed" class="details-container" dir="rtl" (mouseenter)="this.modelService.disableRaycasting = true" (mouseleave)="this.modelService.disableRaycasting = false">
+<div *ngIf="!isClosed && (details.text !== '' || (details.text === '' && !getIsVisited()))" class="details-container" dir="rtl" (mouseenter)="this.modelService.disableRaycasting = true" (mouseleave)="this.modelService.disableRaycasting = false">
 
   <div class="details" *ngIf="details.text !== ''">
     <h3 class="title">{{this.details.title}}</h3>
