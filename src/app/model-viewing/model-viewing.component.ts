@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModelService } from '../services/model/model.service';
 import { ModelConfig, Details, details, imgs, modelPage } from '../info';
 
+
 @Component({
   selector: 'app-model-viewing',
   templateUrl: './model-viewing.component.html',
@@ -70,8 +71,8 @@ export class ModelViewingComponent implements OnInit {
     if (indication !== this.modelState) {
       this.isLoaded = false;
       this.modelState = indication;
-      // this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
-      this.config!.modelPath = 'assets/';
+      this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
+      // this.config!.modelPath = 'assets/';
 
       const isLoaded = this.modelService.reloadModel(this.config!);
 

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ModelConfig } from './info';
 import { AccountInfo } from '@azure/msal-browser';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,8 +23,8 @@ export class AppComponent {
 
   public config: ModelConfig = {
     distanceFromModel: 20,
-    // modelPath: `https://baha21storage.blob.core.windows.net/oldersystem/${machines[0]}.glb`,
-    modelPath: `assets/TTU.glb`,
+    modelPath: `https://baha21storage.blob.core.windows.net/oldersystem/${machines[0]}.glb`,
+    // modelPath: `assets/TTU.glb`,
     modelHeight: 1.5,
     onModelLoadProgress: (xhr) => { },
     onModelLoadError: console.error
@@ -43,7 +44,8 @@ export class AppComponent {
     this.learningMode = introPageInfo.learningModes[0];
     this.currentMachine = machine;
     if (machine !== '') {
-      this.config.modelPath = `assets/TTU.glb`;
+      this.config.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}.glb`;
+      // this.config.modelPath = `assets/TTU.glb`;
     }
   }
 }

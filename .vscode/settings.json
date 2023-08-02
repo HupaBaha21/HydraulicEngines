@@ -1,4 +1,4 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/059a2a70-7e7a-4e79-a878-dc7a638aedf1/resourceGroups/hupa-techni/providers/Microsoft.Web/sites/HydraulicEngines",
+    "appService.defaultWebAppToDeploy": "/subscriptions/059a2a70-7e7a-4e79-a878-dc7a638aedf1/resourceGroups/Hupa-Techni/providers/Microsoft.Web/sites/Hupa21-ttu-hpu",
     "appService.deploySubpath": "dist\\hydraulic"
 }

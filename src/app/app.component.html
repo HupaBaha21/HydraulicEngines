@@ -5,7 +5,7 @@
             <img [src]="introPageInfo.signs.airForce" alt="airforce" class="signs air-force">
             <img [src]="introPageInfo.signs.hupa" alt="hupa" class="signs hupa">
         </div>
-        <div *ngIf="animationened" class="opacityshake">
+        <div *ngIf="animationened" class="animationened">
             <ng-container *ngIf="currentMachine === ''; else machinePageTop">
                 <h5 id="title">{{introPageInfo.greeting}} {{user.name}}</h5>
             </ng-container>

@@ -215,12 +215,6 @@ export class ModelService {
 
   public resetView() {
     this.controls!.target = new Vector3(0,0,0);
-    // this.parts.forEach(part => {
-    //   if(part instanceof Mesh){
-    //     part.material.opacity = 1.0;
-    //   }
-    // });
-    // this.outlinePass!.selectedObjects = [];
   }
 
   private onDocumentMouseDown(event: any) {
@@ -240,18 +234,6 @@ export class ModelService {
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
-
-
-      // this.parts.forEach(part => {
-      //   if(part instanceof Mesh) {
-      //       part.material.opacity = 0.25;
-      //   }
-      // });
-
-      // if(this.selectedListObject instanceof Mesh) {
-      //   this.selectedListObject.material.opacity = 1.0;
-      // }
-
     }
   }
 
@@ -299,24 +281,7 @@ export class ModelService {
     this.rgbeLoader.load(path, texture => {
       texture.mapping = EquirectangularReflectionMapping;
       this.scene.environment = texture;
-      // this.scene.background = texture;
       texture.dispose();
     });
   }
-
-  // public setHdrBackground(path: string) {
-  //   this.rgbeLoader.load(path, texture => {
-  //     texture.mapping = EquirectangularReflectionMapping;
-  //     this.scene.background = texture;
-  //     texture.dispose();
-  //  });
-  // }
-
-  // public setLdrEnvironment(path: string) {
-  //   this.textureLoader.load(path, texture => {
-  //     texture.mapping = EquirectangularReflectionMapping;
-  //     this.scene.environment = texture;
-  //     texture.dispose();
-  //   });
-  // }
 }

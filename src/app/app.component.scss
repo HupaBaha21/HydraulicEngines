@@ -200,15 +200,28 @@
   animation-name: IntroToMachineBottom;
 }
 
-.opacityshake {
-  animation: opacityshake var(--opacityTime) 1 forwards;
+.opacityshakeOut {
+  animation: opacityshakeOut var(--opacityTime) 1 forwards;
 }
 
-@keyframes opacityshake {
-  0% {
+@keyframes opacityshakeOut {
+  from {
+    opacity: 100%;
+  }
+  to {
     opacity: 0%;
   }
-  100% {
+}
+
+.opacityshakeIn {
+  animation: opacityshakeIn var(--opacityTime) 1 forwards;
+}
+
+@keyframes opacityshakeIn {
+  from {
+    opacity: 0%;
+  }
+  to {
     opacity: 100%;
   }
 }

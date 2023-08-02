@@ -1,3 +1,6 @@
+import { environment } from 'src/environments/environment';
+import { isDevMode } from '@angular/core';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,10 +15,13 @@ import { MSAL_INSTANCE, MsalModule, MsalService } from '@azure/msal-angular';
 import { IPublicClientApplication, PublicClientApplication } from '@azure/msal-browser';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
+  console.log(isDevMode());
+  const redirectUri = isDevMode() ? 'http://localhost:4200' : 'https://hupa21-ttu-hpu.azurewebsites.net/';
+  console.log("redirectUri: " + redirectUri);
   return new PublicClientApplication({
     auth: {
-      clientId: 'c25247c6-3cd6-4a30-8af2-7262a89b31c4',
-      redirectUri: 'http://localhost:4200',
+      clientId: '8634eb2c-22c3-4c14-8fd6-60ace26c1910',
+      redirectUri: redirectUri,
     }
   })
 }
