@@ -21,7 +21,8 @@ export class AppComponent {
 
   public config: ModelConfig = {
     distanceFromModel: 20,
-    modelPath: `https://baha21storage.blob.core.windows.net/oldersystem/${machines[0]}.glb`,
+    // modelPath: `https://baha21storage.blob.core.windows.net/oldersystem/${machines[0]}.glb`,
+    modelPath: `assets/TTU.glb`,
     modelHeight: 1.5,
     onModelLoadProgress: (xhr) => { },
     onModelLoadError: console.error
@@ -43,7 +44,7 @@ export class AppComponent {
         this.learningMode = introPageInfo.learningModes[0];
         this.currentMachine = machine;
         if (machine !== '') {
-          this.config.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}.glb`;
+          this.config.modelPath = `assets/TTU.glb`;
         }
 
         // end animation (turn opacity to 100%) after all the elements have been added to the dom

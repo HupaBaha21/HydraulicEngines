@@ -40,12 +40,11 @@ export class ModelViewingComponent implements OnInit {
 
   ngOnInit(): void {
     const canvas = <HTMLCanvasElement>document.querySelector('#view');
-    // this.modelService.setHdrEnvironment('https://baha21storage.blob.core.windows.net/oldersystem/light1.hdr');
-    this.modelService.setHdrEnvironment('../../assets/light1.hdr');
+    this.modelService.setHdrEnvironment('https://baha21storage.blob.core.windows.net/oldersystem/light.hdr');
+    // this.modelService.setHdrEnvironment('../../assets/light1.hdr');
     const isLoaded = this.modelService.createModelView(canvas, this.config!);
     this.modelService.partSelect.subscribe((part) => {
       this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine);
-      console.log(this.details);
     }
     );
 
@@ -71,7 +70,8 @@ export class ModelViewingComponent implements OnInit {
     if (indication !== this.modelState) {
       this.isLoaded = false;
       this.modelState = indication;
-      this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
+      // this.config!.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}${this.modelState}.glb`;
+      this.config!.modelPath = 'assets/';
 
       const isLoaded = this.modelService.reloadModel(this.config!);
 
@@ -79,14 +79,13 @@ export class ModelViewingComponent implements OnInit {
         if(isLoaded){
           this.isLoaded = isDone;
           this.modelService.lookAtListObject(name);
-          this.listState = this.states.inactive;
         }
       });
     }
 
     else {
       this.modelService.lookAtListObject(name);
-      this.listState = this.states.inactive;
     }
+    this.listState = this.states.inactive;
   }
 }
