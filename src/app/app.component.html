@@ -1,13 +1,12 @@
 <app-idf-login *ngIf="!user" (userLogged)="setUser($event)"></app-idf-login>
 <div *ngIf="user" class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
-    <div id="top-container" class="generic-animation" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'" [ngClass]="turn + 'Top'">
+    <div id="top-container" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'">
         <div id="signs">
             <img [src]="introPageInfo.signs.airForce" alt="airforce" class="signs air-force">
             <img [src]="introPageInfo.signs.hupa" alt="hupa" class="signs hupa">
         </div>
-        <div [class.opacityshake]="opacity">
-            <ng-container *ngIf="currentMachine === ''; else machinePageTop" >
-                <!-- <h5 id="title">{{introPageInfo.pageTitle}}</h5> -->
+        <div *ngIf="animationened" class="opacityshake">
+            <ng-container *ngIf="currentMachine === ''; else machinePageTop">
                 <h5 id="title">{{introPageInfo.greeting}} {{user.name}}</h5>
             </ng-container>
 
@@ -24,8 +23,8 @@
 
     </div>
 
-    <div id="bottom-container" class="generic-animation" [class]="currentMachine === '' ? 'bottom-intro' : 'bottom-machine'" [ngClass]="turn + 'Bottom'">
-        <div [class.opacityshake]="opacity">
+    <div id="bottom-container" [class]="currentMachine === '' ? 'bottom-intro' : 'bottom-machine'">
+        <div *ngIf="animationened" class="opacityshake">
             <ng-container *ngIf="currentMachine === ''; else machinePageBottom">
                 <div id="menu-title">{{introPageInfo.menuTitle}}</div>
                 <div id="machines-container">
@@ -53,6 +52,5 @@
 
         ניצן היא ברת מזל
         לא עלתה שמירות כמו עומר חמל
-
     </div>
 </div>
