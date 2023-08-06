@@ -1,8 +1,0 @@
-<div id="waiting">
-  <button *ngIf="!isLoggedIn()" (click)="logIn()">log in</button>
-  <button *ngIf="isLoggedIn()" (click)="logOut()">log out</button>
-  <p *ngIf="isLoggedIn(); else loggedOut">You're logged in</p>
-  <ng-template #loggedOut>
-    <p>You're logged out</p>
-  </ng-template>
-</div>

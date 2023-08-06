@@ -1,5 +1,5 @@
-<app-idf-login *ngIf="!user" (userLogged)="setUser($event)"></app-idf-login>
-<div *ngIf="user" class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
+<!-- <app-idf-login *ngIf="!user" (userLogged)="setUser($event)"></app-idf-login> -->
+<div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'">
         <div id="signs">
             <img [src]="introPageInfo.signs.airForce" alt="airforce" class="signs air-force">
@@ -7,7 +7,10 @@
         </div>
         <div *ngIf="animationened" class="animationened">
             <ng-container *ngIf="currentMachine === ''; else machinePageTop">
-                <h5 id="title">{{introPageInfo.greeting}} {{user.name}}</h5>
+                <h5 *ngIf="user; else default" class="title">{{message}}, {{user.name}}</h5>
+                <ng-template #default>
+                  <h5 id="greeting" class="title">{{message}}</h5>
+                </ng-template>
             </ng-container>
 
             <ng-template #machinePageTop>
@@ -39,18 +42,5 @@
                 <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"></app-model-viewing>
             </ng-template>
         </div>
-    </div>
-
-    <div>
-        גיא המושלם
-        הוא הכי טוב בעולם
-        אין לו שפם
-        יש לו שיער
-        הוא לא שר
-        ואם כן זה רע
-        טריליליטרה להלה
-
-        ניצן היא ברת מזל
-        לא עלתה שמירות כמו עומר חמל
     </div>
 </div>

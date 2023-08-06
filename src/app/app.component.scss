@@ -24,7 +24,7 @@
   --bottom-intro: 63%;
   --distanceFromEdges: 4%;
   --animationTime: 1.5s; //needs to be like animationTime in ts file
-  --opacityTime: 0.3s;
+  --opacityTime: 0.9s;
 
   position: absolute;
   width: 100vw;
@@ -32,13 +32,55 @@
   background-size: cover;
 }
 
+#waiting {
+  height: 100vh;
+  width: 100vw;
+  background-color: #dcf5ff;
+  bottom: 0;
+  position: absolute;
+  z-index: 20;
+}
+
+.log-button {
+  height: 6vh;
+  width: 36vw;
+  border-radius: 18px;
+  border: none;
+  background-color: #237fca;
+  color: white;
+  font-size: 136%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.disappear{
+  animation: disappear 2s 1 forwards;
+  background: inherit;
+}
+
+@keyframes disappear {
+  from {
+    height: 100vh;
+  }
+  to {
+    height: 0vh;
+    border-radius: 25px;
+  }
+}
+
+
+
 //top containers
 #top-container {
   position: absolute;
   top: 0;
   width: 100%;
   z-index: 10;
-  background: inherit;
+  // background: inherit;
   animation-duration: var(--animationTime);
   animation-fill-mode: forwards;
   height: 10vh;
@@ -110,14 +152,14 @@
 .top-intro {
   animation-name: MachineToIntroTop;
 
-  #title {
+  .title {
     position: absolute;
     font-size: 2.5rem;
     top: 15vh;
     text-align: center;
     direction: rtl;
     color: white;
-    width: 91vw;
+    width: 78vw;
     margin: auto;
     right: 0;
     left: 0;
@@ -198,6 +240,19 @@
 
 .bottom-machine {
   animation-name: IntroToMachineBottom;
+}
+
+.opacityShake {
+  animation: opacityshake var(--opacityTime) 1 forwards;
+}
+
+@keyframes opacityshake {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 
 .opacityshakeOut {

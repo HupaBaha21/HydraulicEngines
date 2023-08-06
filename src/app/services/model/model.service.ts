@@ -228,7 +228,6 @@ export class ModelService {
 
   public lookAtListObject(name: string){
     let part = this.findPartByName(name);
-    console.log(part);
     //if this part exists in the object
     if (part !== false) {
       this.selectedListObject = part;

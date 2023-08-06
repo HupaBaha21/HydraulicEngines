@@ -140,7 +140,6 @@ export const introPageInfo = {
   },
   goBackArrow: "../assets/imgs/goBackAsset 10.png",
   pageTitle: "ספקי כוח הידראוליים תפעול והכרה",
-  greeting: "היי",
   menuTitle: "בחרו מכונה",
   learningModes: [
     "view",
