@@ -19,6 +19,9 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     auth: {
       clientId: '8634eb2c-22c3-4c14-8fd6-60ace26c1910',
       redirectUri: redirectUri,
+    },
+    system: {
+      allowNativeBroker: false,
     }
   })
 }
@@ -34,13 +37,14 @@ export function MSALInstanceFactory(): IPublicClientApplication {
   imports: [
     BrowserModule,
     FormsModule,
-    MsalModule
+    MsalModule,
   ],
   providers: [
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory
     },
+
     MsalService
   ],
   bootstrap: [AppComponent]
