@@ -34,6 +34,21 @@ export class AppComponent implements OnInit {
   constructor(private msalService: MsalService) { }
 
   ngOnInit(): void {
+    this.msalService.instance.handleRedirectPromise().then(
+      (response) => {
+        if (response != null && response.account != null) {
+          this.msalService.instance.setActiveAccount(response.account);
+          this.trigger = true;
+          this.user = response.account!;
+
+          const jsonAcc = JSON.stringify(response.account);
+          sessionStorage.setItem('account', jsonAcc);
+        }
+      },
+      (error: any) => {
+        this.message += error
+      }
+    );
     this.setGreeting();
     let account = JSON.parse(sessionStorage.getItem('account')!);
     if (account) {
@@ -55,20 +70,21 @@ export class AppComponent implements OnInit {
   }
 
   logIn() {
-    this.msalService.loginPopup().subscribe(
-      (response: AuthenticationResult) => {
-        this.msalService.instance.setActiveAccount(response.account);
-        this.trigger = true;
-        this.user = response.account!;
-        this.message += 'response';
+    this.msalService.loginRedirect();
+    // this.msalService.loginPopup().subscribe(
+    //   (response: AuthenticationResult) => {
+    //     this.msalService.instance.setActiveAccount(response.account);
+    //     this.trigger = true;
+    //     this.user = response.account!;
+    //     this.message += 'response';
 
 
-        const jsonAcc = JSON.stringify(response.account);
-        sessionStorage.setItem('account', jsonAcc);
-      },
-      (error: any) => this.message += error,
-      () => this.message += 'completed'
-    );
+    //     const jsonAcc = JSON.stringify(response.account);
+    //     sessionStorage.setItem('account', jsonAcc);
+    //   },
+    //   (error: any) => this.message += error,
+    //   () => this.message += 'completed'
+    // );
   }
 
   changeMachine(machine: string) {
