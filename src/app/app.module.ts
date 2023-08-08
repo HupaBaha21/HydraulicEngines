@@ -1,4 +1,3 @@
-import { environment } from 'src/environments/environment';
 import { isDevMode } from '@angular/core';
 
 import { NgModule } from '@angular/core';
@@ -25,7 +24,6 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     }
   })
 }
-
 
 @NgModule({
   declarations: [

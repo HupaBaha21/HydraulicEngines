@@ -10,7 +10,6 @@ export interface ModelConfig {
   modelHeight: number;
   onModelLoadProgress: (xhr: ProgressEvent<EventTarget>) => void;
   onModelLoadError: (error: ErrorEvent) => void;
-
 }
 
 export const details: { [machine: string]: { parts: { [itemName: string]: string; }; outerParts: { [itemName: string]: string; }; } } = {
@@ -138,6 +137,12 @@ export const introPageInfo = {
     airForce: "../assets/imgs/airForce.png",
     hupa: "../assets/imgs/hupa.png"
   },
+  greetings: [
+    'לילה טוב',
+    'בוקר טוב',
+    'צהריים טובים',
+    'ערב טוב',
+  ],
   goBackArrow: "../assets/imgs/goBackAsset 10.png",
   pageTitle: "ספקי כוח הידראוליים תפעול והכרה",
   menuTitle: "בחרו מכונה",

@@ -13,20 +13,19 @@ import { MsalService } from '@azure/msal-angular';
 export class AppComponent implements OnInit {
   introPageInfo = introPageInfo;
   machines = machines;
-  learningModes = introPageInfo.learningModes;
   learningMode: string = introPageInfo.learningModes[0];
   user!: AccountInfo;
   trigger: boolean = false;
   message: string = '';
 
+  url: string = 'https://baha21storage.blob.core.windows.net/oldersystem/';
   currentMachine: string = '';
   turn: string = '';
   animationened: boolean = true;
-  animationTime: number = 1.5;
 
   public config: ModelConfig = {
     distanceFromModel: 20,
-    modelPath: `https://baha21storage.blob.core.windows.net/oldersystem/${machines[0]}.glb`,
+    modelPath: this.url + `${machines[0]}.glb`,
     modelHeight: 1.5,
     onModelLoadProgress: (xhr) => { },
     onModelLoadError: console.error
@@ -47,18 +46,8 @@ export class AppComponent implements OnInit {
   }
 
   setGreeting() {
-    var hours = new Date().getHours();
-    var morning = 'בוקר טוב';
-    var afternoon = 'צהריים טובים';
-    var evening = 'ערב טוב';
-
-    if (hours >= 0 && hours < 12) {
-      this.message = morning;
-    } else if (hours >= 12 && hours < 17) {
-      this.message = afternoon;
-    } else if (hours >= 17 && hours < 24) {
-      this.message = evening;
-    }
+    var hours = new Date().getHours() / 6;
+    this.message = introPageInfo.greetings[Math.floor(hours)];
   }
 
   isLoggedIn() : boolean {
@@ -71,26 +60,30 @@ export class AppComponent implements OnInit {
         this.msalService.instance.setActiveAccount(response.account);
         this.trigger = true;
         this.user = response.account!;
+        this.message += 'response';
+
 
         const jsonAcc = JSON.stringify(response.account);
         sessionStorage.setItem('account', jsonAcc);
       },
-      (error: any) => console.log(error),
-      () => console.log("complete")
+      (error: any) => this.message += error,
+      () => this.message += 'completed'
     );
   }
 
   changeMachine(machine: string) {
+    var animationTime: number = 1.5;
+
     this.animationened = false;
     setTimeout(() => {
       this.animationened = true;
-    }, this.animationTime * 1000);
+    }, animationTime * 1000);
 
     this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
     this.learningMode = introPageInfo.learningModes[0];
     this.currentMachine = machine;
     if (machine !== '') {
-      this.config.modelPath = `https://baha21storage.blob.core.windows.net/oldersystem/${this.currentMachine}.glb`;
+      this.config.modelPath = this.url + `${this.currentMachine}.glb`;
     }
   }
 }

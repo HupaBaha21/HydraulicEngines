@@ -1,5 +1,4 @@
 <div *ngIf="!isClosed && (details.title !== '' && details.text !== '' || (details.title === '' && details.text === '' && !getIsVisited()))" class="details-container" dir="rtl" (mouseenter)="this.modelService.disableRaycasting = true" (mouseleave)="this.modelService.disableRaycasting = false">
-
   <div class="details" *ngIf="details.title !== '' && details.text !== ''">
     <div>
       <h3 class="title">{{this.details.title}}</h3>
@@ -19,5 +18,4 @@
     </div>
     <button class="close-button" (click)="endExplanation()"><i class="bi bi-x"></i></button>
   </div>
-
 </div>

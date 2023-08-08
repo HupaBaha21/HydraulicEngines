@@ -18,7 +18,7 @@
                 <div id="nav-machine">
                     {{currentMachine}}
                     <div id="learning-modes-container">
-                        <img class="nav-icons" *ngFor="let mode of learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
+                        <img class="nav-icons" *ngFor="let mode of introPageInfo.learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
                     </div>
                 </div>
             </ng-template>

@@ -232,6 +232,7 @@ export class ModelService {
     if (part !== false) {
       this.selectedListObject = part;
       this.outlinePass!.selectedObjects = [this.selectedListObject!];
+      this.controls!.target = this.selectedListObject!.position;
       this.partSelect.emit(this.outlinePass!.selectedObjects[0]);
     }
   }

@@ -11,9 +11,9 @@ import { ModelConfig, Details, details, imgs, modelPage } from '../info';
   styleUrls: ['./model-viewing.component.css']
 })
 export class ModelViewingComponent implements OnInit {
+  modelPage = modelPage;
   listState: string = modelPage.states.hidden;
   states = modelPage.states;
-  modelPage = modelPage;
   details: Details;
   imgs = imgs;
 

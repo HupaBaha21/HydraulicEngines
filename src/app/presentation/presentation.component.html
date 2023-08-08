@@ -9,7 +9,7 @@
   </ng-template>
 </div>
 
-  <!-- 
+  <!--
     There are 2 options:
     CHOSEN ONE: putting each iframe manually
     or solve the unsafe url problem
@@ -17,7 +17,7 @@
 <div [hidden]="!isVisited">
   <iframe SameSite=None src="https://onedrive.live.com/embed?resid=41F21928ABD61941%21944&amp;authkey=%21AK3RlJb_ZmIVfsY&amp;em=2&amp;wdAr=1.3333333333333333"
   id="iframe" class="screen" *ngIf="'HPU' === currentMachine" frameborder="0"></iframe>
-  
+
   <iframe SameSite=None src="https://onedrive.live.com/embed?resid=41F21928ABD61941%211123&amp;authkey=!AD-R-ExtIii2GLE&amp;em=2&amp;wdAr=1.7777777777777777"
   id="iframe" class="screen" *ngIf="'TTU' === currentMachine" frameborder="0"></iframe>
 </div>

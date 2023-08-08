@@ -21,9 +21,8 @@ export class PresentationComponent implements OnInit {
     }, presentationPage.waitingTime);
   }
 
-  
   public get isVisited() : boolean {
     return PresentationComponent.isVisited;
   }
-  
+
 }
