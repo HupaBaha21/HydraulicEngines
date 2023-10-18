@@ -1,5 +1,5 @@
 <!-- <app-idf-login *ngIf="!user" (userLogged)="setUser($event)"></app-idf-login> -->
-<div class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
+<div *ngIf="user" class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
     <div id="top-container" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'">
         <div id="signs">
             <img [src]="introPageInfo.signs.airForce" alt="airforce" class="signs air-force">
@@ -44,3 +44,4 @@
         </div>
     </div>
 </div>
+<app-idf-login (changed)="logIn()" (loggedIn)="loggedIn()" [trigger]="trigger"></app-idf-login>

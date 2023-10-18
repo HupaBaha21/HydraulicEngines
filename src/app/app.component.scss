@@ -16,22 +16,6 @@
   }
 }
 
-.container {
-  --light-blue: #dcf5ff;
-  --top-machine: 26%;
-  --top-intro: 37%;
-  --bottom-machine: 74%;
-  --bottom-intro: 63%;
-  --distanceFromEdges: 4%;
-  --animationTime: 1.5s; //needs to be like animationTime in ts file
-  --opacityTime: 0.9s;
-
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-}
-
 #waiting {
   height: 100vh;
   width: 100vw;

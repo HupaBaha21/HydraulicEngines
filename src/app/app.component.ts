@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   machines = machines;
   learningMode: string = introPageInfo.learningModes[0];
   user!: AccountInfo;
-  trigger: boolean = false;
+  trigger: any = false;
   message: string = '';
 
   url: string = 'https://baha21storage.blob.core.windows.net/oldersystem/';
@@ -37,27 +37,38 @@ export class AppComponent implements OnInit {
     this.msalService.instance.handleRedirectPromise().then(
       (response) => {
         if (response != null && response.account != null) {
+          // this.user = response.account!;
           this.msalService.instance.setActiveAccount(response.account);
           this.trigger = true;
-          this.user = response.account!;
 
-          const jsonAcc = JSON.stringify(response.account);
-          sessionStorage.setItem('account', jsonAcc);
+          // const jsonAcc = JSON.stringify(response.account);
+          // sessionStorage.setItem('account', jsonAcc);
         }
       },
       (error: any) => {
-        this.message += error
+        this.trigger = {
+          message: error.message
+        };
       }
     );
     this.setGreeting();
-    let account = JSON.parse(sessionStorage.getItem('account')!);
-    if (account) {
-      this.msalService.instance.setActiveAccount(account);
-      this.trigger = true;
-      this.user = account;
-    } else {
-      this.logIn();
-    }
+    // let account = JSON.parse(sessionStorage.getItem('account')!);
+    // if (account) {
+    //   this.msalService.instance.setActiveAccount(account);
+    //   this.trigger = true;
+    //   this.user = account;
+    // }
+  }
+
+  loggedIn(){
+    console.log("inside");
+    setTimeout(() => {
+      this.user = this.msalService.instance.getActiveAccount()!;
+      console.log("Inside this user" + this.user);
+      const jsonAcc = JSON.stringify(this.user);
+      sessionStorage.setItem('account', jsonAcc);
+
+    }, 0);
   }
 
   setGreeting() {

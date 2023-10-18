@@ -89,15 +89,16 @@ export const details: { [machine: string]: { parts: { [itemName: string]: string
       Pressure_and_boots_pipes: "צינורות לחץ והגברה",
       pressure_line_filter: "מסנן קו לחץ",
       return_line_filter: "מסנן קו מחזיר",
-      Selects_a_container: "בוחר מיכל",
+      Selects_a_container: "בוחר מיכל/מטוס",//
       storage_unit: "תיבת אחסון",
       Transmision_Box: "תיבת תמסורת",
       hydraulic_pumps: "משאבות הידראוליות",
-      Transmision_oil_gauge: "מדיד שמן תמסורת",
+      Transmision_oil_gauge: "מדיד שמן תמסורת"// אין דבר כזה
+      //מדיד גובה שמן הידראולי - אין באף מודל. מומחה תוכן אומר שרואים את החלק גם כשהדלת סגורה - משמע צריך להיות במודל עם חופה.
     },
     outerParts: {
       HPU: "החופה של המערכת",
-      Control_panel: "לוח שליטה",
+      Control_panel: "לוח הפעלה",
       Control_screen: "מסך שליטה",
       Emergency_dead: "מדומם",
       Turn_on: "הפעלה",
@@ -110,18 +111,19 @@ export const details: { [machine: string]: { parts: { [itemName: string]: string
       door4: "דלת מספר 4",
       Hour_meter: "מד שעות",
       forklift_operators: "מובילי מלגזה",
-      opening_handle: "ידית פתיחה",
+      opening_handle: "מפסק חשמלי ראשי",//
       Pipe1: "צינור מספר 1",
       Pipe2: "צינור מספר 2",
       sliding_rod: "מוט הזזה",
       System_top_opening: "פתח לפנים המערכת",
       Wheels: "גלגלים",
       Remote: "שלט ראשי",
-      Aircraft_tank: "מיכל מטוס",
+      Aircraft_tank: "שלט הפעלה",//
       Bypas_faucet: "ברז עוקף",
       Hydraulic_pressure_gauge: "מד לחץ הידראולי",
       Inanimate: "מדומם",
       Pressure_regulator: "ווסת לחץ",
+      //
     }
   }
 }
