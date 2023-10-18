@@ -1,21 +1,16 @@
-<div id="login-div" class="container">
+<div id="login-div" class="container" >
   <div class="centered">
-    <!-- <button (click)="continue()">יאללה לאתר!</button> -->
     <div *ngIf="!trigger">
-
-      <!-- <h1>היי מה קורה</h1> -->
       <div id="menu-title" >ברוכים הבאים</div>
       <p>בכדי להמשיך לאתר יש להתחבר קודם לאתר ה- idf.</p>
       <div id="menu-title" (click)="continue()" style="border-radius: 0px 30px 30px 0px; position: absolute; left: 0;" >תכניסו אותי</div>
-      <!-- <button >יאללה לאתר!</button> -->
-      <!-- <button (click)="logIn()">כנסו כנסו</button> -->
     </div>
 
     <div *ngIf="trigger">
       <div *ngIf="trigger === true">
-        <h1>בוקר טוב עולם</h1>
-        <p>שלומות</p>
-        <button (click)="continue()">יאללה לאתר!</button>
+        <div id="menu-title" >ברוכים הבאים</div>
+        <p>בכדי להמשיך לאתר יש להתחבר קודם לאתר ה- idf.</p>
+        <div id="menu-title" (click)="continue()" style="border-radius: 0px 30px 30px 0px; position: absolute; left: 0;" >תכניסו אותי</div>
       </div>
 
       <div *ngIf="trigger.message">
