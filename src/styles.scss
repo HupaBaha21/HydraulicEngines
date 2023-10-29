@@ -1,9 +1,16 @@
 body {
 	margin: 0;
-	box-sizing: border-box;
 	position: relative;
-  background-color: #1a579e;
   background-image: url('assets/imgs/background.jpg');
+  background-size: cover;
+  --light-blue: #dcf5ff;
+  --top-machine: 26%;
+  --top-intro: 37%;
+  --bottom-machine: 74%;
+  --bottom-intro: 63%;
+  --distanceFromEdges: 4%;
+  --animationTime: 1.5s;
+  --opacityTime: 0.9s;
   // background-size: 100% 100%;
 }
 
@@ -20,39 +27,22 @@ html * {
 	font-family: 'Assistant', sans-serif;
 }
 
-// older
-// .container {
-//   --light-blue: #dcf5ff;
-//   --top-machine: 26%;
-//   --top-intro: 37%;
-//   --bottom-machine: 74%;
-//   --bottom-intro: 63%;
-//   --distanceFromEdges: 4%;
-//   --animationTime: 1.5s; //needs to be like animationTime in ts file
-//   --opacityTime: 0.9s;
-
-//   position: absolute;
-//   width: 100vw;
-//   height: 100vh;
-//   background-size: cover;
-//   background-color: var(--light-blue);
-// }
-
 .container {
   --light-blue: #dcf5ff;
-  --top-machine: 26%;
-  --top-intro: 37%;
-  --bottom-machine: 74%;
-  --bottom-intro: 63%;
+  --top-machine: 26vh;
+  --top-intro: 37vh;
+  --bottom-machine: 74vh;
+  --bottom-intro: 63vh;
   --distanceFromEdges: 4%;
   --animationTime: 1.5s;
   --opacityTime: 0.9s;
+  --borderRadius: 35px;
   position: absolute;
   width: 100vw;
   height: 100vh;
   bottom: 0;
-  background-size: cover;
-  background-color: var(--light-blue);
+  // background-size: cover;
+  // background-color: var(--light-blue);
   // border-radius: 96px 85px 0px 0px;
 }
 
@@ -103,9 +93,3 @@ html * {
   width: 100%;
   opacity: 0%;
 } */
-
-
-
-* {
-  user-select: none;
-}

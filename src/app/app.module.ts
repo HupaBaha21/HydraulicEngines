@@ -11,7 +11,6 @@ import { PresentationComponent } from './presentation/presentation.component';
 import { FormsModule } from '@angular/forms';
 import { MSAL_INSTANCE, MsalModule, MsalService } from '@azure/msal-angular';
 import { IPublicClientApplication, PublicClientApplication } from '@azure/msal-browser';
-import { IdfLoginComponent } from './idf-login/idf-login.component';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   const redirectUri = isDevMode() ? 'http://localhost:4200' : 'https://hupa21-ttu-hpu.azurewebsites.net/';
@@ -32,7 +31,6 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     DetailsComponent,
     ModelViewingComponent,
     PresentationComponent,
-    IdfLoginComponent,
   ],
   imports: [
     BrowserModule,

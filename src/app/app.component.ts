@@ -15,13 +15,10 @@ export class AppComponent implements OnInit {
   machines = machines;
   learningMode: string = introPageInfo.learningModes[0];
   user!: AccountInfo;
-  trigger: any = false;
   message: string = '';
 
   url: string = 'https://baha21storage.blob.core.windows.net/oldersystem/';
   currentMachine: string = '';
-  turn: string = '';
-  animationened: boolean = true;
 
   public config: ModelConfig = {
     distanceFromModel: 20,
@@ -37,38 +34,22 @@ export class AppComponent implements OnInit {
     this.msalService.instance.handleRedirectPromise().then(
       (response) => {
         if (response != null && response.account != null) {
-          // this.user = response.account!;
+          this.user = response.account!;
           this.msalService.instance.setActiveAccount(response.account);
-          this.trigger = true;
 
-          // const jsonAcc = JSON.stringify(response.account);
-          // sessionStorage.setItem('account', jsonAcc);
+          const jsonAcc = JSON.stringify(response.account);
+          sessionStorage.setItem('account', jsonAcc);
         }
       },
       (error: any) => {
-        this.trigger = {
-          message: error.message
-        };
       }
     );
     this.setGreeting();
     // let account = JSON.parse(sessionStorage.getItem('account')!);
     // if (account) {
     //   this.msalService.instance.setActiveAccount(account);
-    //   this.trigger = true;
     //   this.user = account;
     // }
-  }
-
-  loggedIn(){
-    console.log("inside");
-    setTimeout(() => {
-      this.user = this.msalService.instance.getActiveAccount()!;
-      console.log("Inside this user" + this.user);
-      const jsonAcc = JSON.stringify(this.user);
-      sessionStorage.setItem('account', jsonAcc);
-
-    }, 0);
   }
 
   setGreeting() {
@@ -76,41 +57,59 @@ export class AppComponent implements OnInit {
     this.message = introPageInfo.greetings[Math.floor(hours)];
   }
 
-  isLoggedIn() : boolean {
-    return this.msalService.instance.getActiveAccount() != null;
+  setUserInfo(){
+    this.user = this.msalService.instance.getActiveAccount()!;
+    const jsonAcc = JSON.stringify(this.user);
+    sessionStorage.setItem('account', jsonAcc);
   }
 
-  logIn() {
+  loginRedirect() {
     this.msalService.loginRedirect();
-    // this.msalService.loginPopup().subscribe(
-    //   (response: AuthenticationResult) => {
-    //     this.msalService.instance.setActiveAccount(response.account);
-    //     this.trigger = true;
-    //     this.user = response.account!;
-    //     this.message += 'response';
-
-
-    //     const jsonAcc = JSON.stringify(response.account);
-    //     sessionStorage.setItem('account', jsonAcc);
-    //   },
-    //   (error: any) => this.message += error,
-    //   () => this.message += 'completed'
-    // );
   }
 
-  changeMachine(machine: string) {
-    var animationTime: number = 1.5;
+  continueToPage() {
+    document.getElementById('idf-login')!.classList.add("after-enter-disappear");
+    document.getElementById("bottom-container")?.classList.add("after-enter-bottom-animation");
 
-    this.animationened = false;
+    document.getElementById('bottom-container')?.addEventListener("animationend", () => {
+      document.getElementById('bottom-container')?.classList.remove("after-enter-bottom-animation");
+      document.getElementById("bottom-container")!.style.height = "63vh";
+      document.getElementById("bottom-container")!.style.borderRadius = "35px 35px 0px 0px";
+    })
+
     setTimeout(() => {
-      this.animationened = true;
-    }, animationTime * 1000);
+      document.getElementById('idf-login')?.remove();
+      document.getElementById('bottom-content')!.style.display = "block";
 
-    this.turn = (this.turn === 'Machine') ? 'Intro' : 'Machine';
+      setTimeout(() => {
+        document.getElementById("bottom-container")!.style.height = "63vh";
+        // document.getElementById("bottom-container")?.classList.remove("after-enter-bottom-animation");
+      }, 1000);
+    }, 1500);
+  }
+
+  introMode() {
+    this.currentMachine = "";
+
+    document.getElementById("top-container")!.style.height = "37vh";
+    document.getElementById("bottom-container")!.style.height = "63vh";
+  }
+
+  machineMode(machine: string) {
     this.learningMode = introPageInfo.learningModes[0];
     this.currentMachine = machine;
-    if (machine !== '') {
-      this.config.modelPath = this.url + `${this.currentMachine}.glb`;
-    }
+    this.config.modelPath = this.url + `${this.currentMachine}.glb`;
+
+    document.getElementById("top-container")!.style.height = "26vh";
+    document.getElementById("bottom-container")!.style.height = "74vh";
+  }
+
+  changeHeight() {
+    console.log("dsaasdgjsa");
+    console.log(document.getElementById("bottom-container"));
+    // document.getElementById("bottom-container")!.style.height = "63vh";
+    document.getElementById("bottom-container")!.style.height = "";
+    document.getElementById("bottom-container")!.style.height = "100px";
+
   }
 }

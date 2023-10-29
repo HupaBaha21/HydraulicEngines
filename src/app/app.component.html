@@ -1,47 +1,58 @@
-<!-- <app-idf-login *ngIf="!user" (userLogged)="setUser($event)"></app-idf-login> -->
-<div *ngIf="user" class="container" [style.backgroundImage]="'url(' + introPageInfo.backgroundImg + ')'">
-    <div id="top-container" [class]="currentMachine === '' ? 'top-intro' : 'top-machine'">
+<div class="container">
+    <div id="top-container">
         <div id="signs">
             <img [src]="introPageInfo.signs.airForce" alt="airforce" class="signs air-force">
             <img [src]="introPageInfo.signs.hupa" alt="hupa" class="signs hupa">
         </div>
-        <div *ngIf="animationened" class="animationened">
-            <ng-container *ngIf="currentMachine === ''; else machinePageTop">
-                <h5 *ngIf="user; else default" class="title">{{message}}, {{user.name}}</h5>
-                <ng-template #default>
-                  <h5 id="greeting" class="title">{{message}}</h5>
-                </ng-template>
-            </ng-container>
 
-            <ng-template #machinePageTop>
-                <img id="go-back" [src]="introPageInfo.goBackArrow" alt="go back" (click)="changeMachine('')">
-                <div id="nav-machine">
-                    {{currentMachine}}
-                    <div id="learning-modes-container">
-                        <img class="nav-icons" *ngFor="let mode of introPageInfo.learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
-                    </div>
-                </div>
+        <ng-container id="intro-top" class="animation" *ngIf="currentMachine === ''; else machinePageTop">
+            <h5 *ngIf="user; else default" class="title">{{message}}, {{user.name}}</h5>
+            <ng-template #default>
+              <h5 id="greeting" class="title">{{message}}</h5>
             </ng-template>
-        </div>
+        </ng-container>
 
+        <ng-template id="machine-top" #machinePageTop>
+            <img id="go-back" [src]="introPageInfo.goBackArrow" alt="go back" (click)="introMode()">
+            <div id="nav-machine">
+                {{currentMachine}}
+                <div id="learning-modes-container">
+                    <img class="nav-icons" *ngFor="let mode of introPageInfo.learningModes;" [src]="'../assets/imgs/' + mode + ((mode === learningMode) ? 'Grey' : '') + '.png'" (click)="this.learningMode = mode">
+                </div>
+            </div>
+        </ng-template>
     </div>
 
-    <div id="bottom-container" [class]="currentMachine === '' ? 'bottom-intro' : 'bottom-machine'">
-        <div *ngIf="animationened" class="opacityshake">
-            <ng-container *ngIf="currentMachine === ''; else machinePageBottom">
-                <div id="menu-title">{{introPageInfo.menuTitle}}</div>
-                <div id="machines-container">
-                    <div class="button" *ngFor="let machine of machines; let i = index;" (click)="changeMachine(machine)" [style]="'align-self: ' + (i % 2 === 0 ? 'end' : 'start') + ';'">
-                        <img src="../assets/imgs/button.png" alt="button" [style]="i % 2 === 0 ? '' : 'transform: rotateY(180deg);'">
-                        <h2 class="button-title">{{machine}}</h2>
-                    </div>
+    <div id="bottom-container" class="animation">
+      <div id="bottom-content">
+        <ng-container id="intro" *ngIf="currentMachine === ''; else machinePageBottom">
+            <div class="menu-title">{{introPageInfo.menuTitle}}</div>
+            <div id="machines-container">
+                <div class="button" *ngFor="let machine of machines; let i = index;" (click)="machineMode(machine)" [style]="'align-self: ' + (i % 2 === 0 ? 'end' : 'start') + ';'">
+                    <img src="../assets/imgs/button.png" alt="button" [style]="i % 2 === 0 ? '' : 'transform: rotateY(180deg);'">
+                    <h2 class="button-title">{{machine}}</h2>
                 </div>
-            </ng-container>
-            <ng-template #machinePageBottom>
-                <app-presentation [hidden]="learningMode === introPageInfo.learningModes[0]" [currentMachine]="currentMachine"></app-presentation>
-                <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"></app-model-viewing>
-            </ng-template>
+            </div>
+        </ng-container>
+
+        <ng-template id="machine" #machinePageBottom>
+            <app-presentation [hidden]="learningMode === introPageInfo.learningModes[0]" [currentMachine]="currentMachine"></app-presentation>
+            <app-model-viewing *ngIf="learningMode !== introPageInfo.learningModes[1]" [config]="config" [currentMachine]="currentMachine"></app-model-viewing>
+        </ng-template>
+      </div>
+
+      <div id="idf-login" class="centered animation">
+        <div *ngIf="message === ''">
+          <div class="menu-title" >ברוכים הבאים</div>
+          <p>בכדי להמשיך לאתר יש להתחבר קודם לאתר ה- idf.</p>
+          <div class="menu-title continue-btn" (click)="loginRedirect()">תכניסו אותי</div>
         </div>
+
+        <div *ngIf="message !== ''">
+          <div class="menu-title" >התחברתם בהצלחה!</div>
+          <p>בכדי להמשיך לאתר יש ללחוץ על הכגפתור</p>
+          <div class="menu-title continue-btn" (click)="continueToPage()">יאללה!</div>
+        </div>
+      </div>
     </div>
 </div>
-<app-idf-login (changed)="logIn()" (loggedIn)="loggedIn()" [trigger]="trigger"></app-idf-login>
