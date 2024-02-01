@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   url: string = 'https://baha21storage.blob.core.windows.net/oldersystem/';
   currentMachine: string = '';
 
+  elBottomContainer: any;
+
   public config: ModelConfig = {
     distanceFromModel: 20,
     modelPath: this.url + `${machines[0]}.glb`,
@@ -31,6 +33,7 @@ export class AppComponent implements OnInit {
   constructor(private msalService: MsalService) { }
 
   ngOnInit(): void {
+    this.elBottomContainer = document.getElementById("bottom-container");
     this.msalService.instance.handleRedirectPromise().then(
       (response) => {
         if (response != null && response.account != null) {
@@ -69,30 +72,23 @@ export class AppComponent implements OnInit {
 
   continueToPage() {
     document.getElementById('idf-login')!.classList.add("after-enter-disappear");
-    document.getElementById("bottom-container")?.classList.add("after-enter-bottom-animation");
+    this.elBottomContainer.classList.add("after-enter-bottom-animation");
 
-    document.getElementById('bottom-container')?.addEventListener("animationend", () => {
-      document.getElementById('bottom-container')?.classList.remove("after-enter-bottom-animation");
-      document.getElementById("bottom-container")!.style.height = "63vh";
-      document.getElementById("bottom-container")!.style.borderRadius = "35px 35px 0px 0px";
-    })
-
-    setTimeout(() => {
+    this.elBottomContainer.addEventListener("animationend", () => {
+      this.elBottomContainer.classList.remove("after-enter-bottom-animation");
+      this.elBottomContainer.style.height = "63vh";
+      this.elBottomContainer.style.borderRadius = "35px 35px 0px 0px";
+      document.getElementById("top-container")!.style.zIndex = "10";
+      document.getElementById("bottom-content")!.style.display = "block";
       document.getElementById('idf-login')?.remove();
-      document.getElementById('bottom-content')!.style.display = "block";
-
-      setTimeout(() => {
-        document.getElementById("bottom-container")!.style.height = "63vh";
-        // document.getElementById("bottom-container")?.classList.remove("after-enter-bottom-animation");
-      }, 1000);
-    }, 1500);
+    }, {once : true});
   }
 
   introMode() {
     this.currentMachine = "";
 
     document.getElementById("top-container")!.style.height = "37vh";
-    document.getElementById("bottom-container")!.style.height = "63vh";
+    this.elBottomContainer.style.height = "63vh";
   }
 
   machineMode(machine: string) {
@@ -101,15 +97,15 @@ export class AppComponent implements OnInit {
     this.config.modelPath = this.url + `${this.currentMachine}.glb`;
 
     document.getElementById("top-container")!.style.height = "26vh";
-    document.getElementById("bottom-container")!.style.height = "74vh";
+    this.elBottomContainer.style.height = "74vh";
   }
 
   changeHeight() {
     console.log("dsaasdgjsa");
     console.log(document.getElementById("bottom-container"));
-    // document.getElementById("bottom-container")!.style.height = "63vh";
-    document.getElementById("bottom-container")!.style.height = "";
-    document.getElementById("bottom-container")!.style.height = "100px";
+    // this.elBottomContainer.style.height = "63vh";
+    this.elBottomContainer.style.height = "";
+    this.elBottomContainer.style.height = "100px";
 
   }
 }

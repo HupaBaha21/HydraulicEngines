@@ -10,7 +10,7 @@
   export class DetailsComponent implements OnChanges, OnDestroy {
     modelPage = modelPage;
     imgs = imgs;
-    static isVisited: boolean = false;;
+    static isVisited: boolean = false;
     isClosed: boolean = true;
     modelService: ModelService;
     @Input() details: Details = {
