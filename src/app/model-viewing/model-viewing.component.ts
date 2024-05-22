@@ -20,11 +20,6 @@ export class ModelViewingComponent implements OnInit {
   modelState: string = "";
   searchText: string = "";
   easterArr: string[] = [
-    "כיכר הכדורים לוד",
-    "שמעת על ניהול ידע?",
-    "איתי גולדדצמן",
-    "דניאלה המדרובה",
-    "אין מלחמה בבה סינג סה",
   ];
 
   isLoaded: boolean = false;
@@ -42,23 +37,23 @@ export class ModelViewingComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // const canvas = <HTMLCanvasElement>document.querySelector('#view');
-    // this.modelService.setHdrEnvironment(this.url + 'light.hdr');
-    // const isLoaded = this.modelService.createModelView(canvas, this.config!);
-    // this.modelService.partSelect.subscribe((part) =>
-    //   this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
-    // );
+    const canvas = <HTMLCanvasElement>document.querySelector('#view');
+    this.modelService.setHdrEnvironment(this.url + 'light.hdr');
+    const isLoaded = this.modelService.createModelView(canvas, this.config!);
+    this.modelService.partSelect.subscribe((part) =>
+      this.details = this.detailsService.retrieveDetails(part.name, this.currentMachine)
+    );
 
-    // isLoaded.subscribe(isDone => this.isLoaded = isDone);
+    isLoaded.subscribe(isDone => this.isLoaded = isDone);
 
-    // this.innerPartsList = details[this.currentMachine].parts;
-    // this.outerPartsList = details[this.currentMachine].outerParts;
+    this.innerPartsList = details[this.currentMachine].parts;
+    this.outerPartsList = details[this.currentMachine].outerParts;
 
-    // document.getElementById("list")?.addEventListener("animationend", ()=>
-    //   this.listState = (this.listState === this.states.inactive) ? this.states.hidden : this.states.active
-    // );
+    document.getElementById("list")?.addEventListener("animationend", ()=>
+      this.listState = (this.listState === this.states.inactive) ? this.states.hidden : this.states.active
+    );
 
-    // this.cacheService.handleCache(this.cacheName, this.cacheUrl);
+    this.cacheService.handleCache(this.cacheName, this.cacheUrl);
   }
 
   get cacheName(): string {
