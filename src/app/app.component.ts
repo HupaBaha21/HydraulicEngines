@@ -94,7 +94,9 @@ export class AppComponent implements OnInit {
   machineMode(machine: string) {
     this.learningMode = introPageInfo.learningModes[0];
     this.currentMachine = machine;
-    this.config.modelPath = this.url + `${this.currentMachine}.glb`;
+    // this.config.modelPath = this.url + `${this.currentMachine}.glb`;
+    this.config.modelPath = '../../assets/' + `${this.currentMachine}.glb`;
+
 
     document.getElementById("top-container")!.style.height = "26vh";
     this.elBottomContainer.style.height = "74vh";

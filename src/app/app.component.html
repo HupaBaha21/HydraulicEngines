@@ -23,8 +23,8 @@
         </ng-template>
     </div>
 
-    <div id="bottom-container" class="animation">
-      <div id="bottom-content">
+    <div id="bottom-container" class="animation adapt-container">
+      <div id="bottom-content" class="adapt-landscape">
         <ng-container id="intro" *ngIf="currentMachine === ''; else machinePageBottom">
             <div class="menu-title">{{introPageInfo.menuTitle}}</div>
             <div id="machines-container">
@@ -42,16 +42,16 @@
       </div>
 
       <div id="idf-login" class="centered animation">
-        <div *ngIf="message === ''">
+        <div class="login" *ngIf="message === ''">
           <div class="menu-title" >ברוכים הבאים</div>
           <p>בכדי להמשיך לאתר יש להתחבר קודם לאתר ה- idf.</p>
           <div class="menu-title continue-btn" (click)="loginRedirect()">תכניסו אותי</div>
         </div>
 
-        <div *ngIf="message !== ''">
-          <div class="menu-title" >התחברתם בהצלחה!</div>
-          <p>בכדי להמשיך לאתר יש ללחוץ על הכגפתור</p>
-          <div class="menu-title continue-btn" (click)="continueToPage()">יאללה!</div>
+        <div class="login" *ngIf="message !== ''">
+          <div class="login-buttons" >התחברתם בהצלחה!</div>
+          <p>בכדי להמשיך לאתר יש ללחוץ על הכפתור...</p>
+          <div class="login-buttons continue-btn" (click)="continueToPage()">יאללה!</div>
         </div>
       </div>
     </div>

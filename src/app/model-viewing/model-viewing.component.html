@@ -7,15 +7,22 @@
 
 <!-- list -->
 <div #list id="list" [class]="listState">
-  <h1>{{modelPage.listTitle}}</h1>
-  <h3>חיפוש</h3>
-  <input id="search-box" type="text" placeholder="חפש חלק" [(ngModel)]="searchText">
-  <span *ngFor="let item of innerPartsList | keyvalue"><p *ngIf="item.value.includes(searchText)" (click)="openListObject(item.key, 'Inner')">-{{item.value}}</p></span>
-  <span *ngFor="let item of outerPartsList | keyvalue"><p *ngIf="item.value.includes(searchText)" (click)="openListObject(item.key, '')">-{{item.value}}</p></span>
-  <div *ngIf="easterArr.includes(searchText)">
-    ניחשתם את הסיסמה
-    <button><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">לחצו עליי</a></button>
+  <div id="search-container">
+    <h1>{{modelPage.listTitle}}</h1>
+    <h3>חיפוש</h3>
+    <input id="search-box" type="text" placeholder="חפש חלק" [(ngModel)]="searchText">
   </div>
+
+  <div id="parts">
+    <span *ngFor="let item of parts | keyvalue">
+      <p *ngIf="item.value.includes(searchText)" (click)="openListObject(item.key)">-{{item.value}}</p>
+    </span>
+    <div *ngIf="easterArr.includes(searchText)">
+      ניחשתם את הסיסמה
+      <button><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">לחצו עליי</a></button>
+    </div>
+  </div>
+
 </div>
 
 <div id="btn-container">

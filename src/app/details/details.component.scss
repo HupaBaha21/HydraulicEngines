@@ -59,7 +59,7 @@ margin: 0;
     padding: 0;
     margin: 0;
 
-    left: 0;
+    left: 2%;
     position: absolute;
 }
 
@@ -90,3 +90,16 @@ button {
         margin-top: 8px;
     }
 }
+
+@media only screen and (orientation: landscape) {
+    .details-container {
+        min-width: 360px;
+        min-height: 170px;
+        padding: 30px;
+        padding-top: 10px;
+        bottom: 33%;
+        left: 20%;
+        height: fit-content;
+        width: fit-content;
+    }
+  }

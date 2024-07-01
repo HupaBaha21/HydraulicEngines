@@ -24,6 +24,7 @@ export class ModelViewingComponent implements OnInit {
 
   isLoaded: boolean = false;
   url: string = 'https://baha21storage.blob.core.windows.net/oldersystem/';
+  parts: { [partName: string]: string; } = {};
   innerPartsList: { [partName: string]: string; } = {};
   outerPartsList: { [partName: string]: string; } = {};
   @Input() currentMachine: string = '';
@@ -49,6 +50,11 @@ export class ModelViewingComponent implements OnInit {
     this.innerPartsList = details[this.currentMachine].parts;
     this.outerPartsList = details[this.currentMachine].outerParts;
 
+    this.parts = {
+      ...this.innerPartsList,
+      ...this.outerPartsList
+    };
+
     document.getElementById("list")?.addEventListener("animationend", ()=>
       this.listState = (this.listState === this.states.inactive) ? this.states.hidden : this.states.active
     );
@@ -61,7 +67,8 @@ export class ModelViewingComponent implements OnInit {
   }
 
   get cacheUrl(): string {
-    return this.url + this.currentMachine + this.modelState + `.glb`;
+    // return this.url + this.currentMachine + this.modelState + `.glb`;
+    return '../../assets/' + `${this.currentMachine}${this.modelState}.glb`;
   }
 
   toggleList() {
@@ -72,11 +79,13 @@ export class ModelViewingComponent implements OnInit {
     this.modelService.resetView();
   }
 
-  openListObject(name: string, indication: string) {
+  openListObject(name: string) {
+    let indication: string = (name in this.innerPartsList) ? "Inner" : "";
     if (indication !== this.modelState) {
       this.isLoaded = false;
       this.modelState = indication;
-      this.config!.modelPath = this.url + `${this.currentMachine}${this.modelState}.glb`;
+      // this.config!.modelPath = this.url + `${this.currentMachine}${this.modelState}.glb`;
+      this.config!.modelPath = '../../assets/' + `${this.currentMachine}${this.modelState}.glb`;
       this.cacheService.handleCache(this.cacheName, this.cacheUrl);
 
       const isLoaded = this.modelService.reloadModel(this.config!);

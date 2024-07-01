@@ -93,3 +93,16 @@ html * {
   width: 100%;
   opacity: 0%;
 } */
+
+
+@media only screen and (orientation: landscape) {
+  .adapt-container {
+    // width: 90% !important;
+
+  }
+
+  .adapt-landscape {
+    width: 40%;
+    margin: auto;
+  }
+}

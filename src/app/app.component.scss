@@ -100,7 +100,7 @@
   }
 
   .menu-title {
-    margin: 10% 0%;
+    margin: 6% 0%;
     background-color: #addef2;
     height: 11%;
     width: 93%;
@@ -141,16 +141,42 @@
 // idf login
 #idf-login {
   text-align: center;
-  position: relative;
-  top: 19vh;
-  height: 50%;
+  position: absolute;
+  height: 100%;
   width: 100vw;
   font-size: 1.2rem;
+  display: flex;
+  background: linear-gradient(90deg, rgba(45,195,255,1) 0%, rgba(127,219,255,1) 37%, rgba(220,245,255,1) 100%);
 
+  
   .continue-btn {
-    border-radius: 0px 30px 30px 0px;
-    position: absolute;
-    left: 0;
+    align-self: flex-end !important;
+  }
+
+  .login {
+    height: 29%;
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .login-buttons {
+      background-color: white;
+      width: 70%;
+      min-width: 310px;
+      border-radius: 30px;
+      font-size: 2rem;
+      font-weight: 600;
+      padding: 12px;
+      box-sizing: border-box;
+      max-width: 470px;
+      align-self: flex-start;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                  0 1px 3px rgba(0, 0, 0, 0.08);
+    }
   }
 
   * {
@@ -197,5 +223,21 @@
   100% {
     border-radius: 35px 35px 0px 0px;
     height: var(--bottom-intro);
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  
+  #idf-login {
+    .login {
+      width: 100%;
+      .continue-btn {
+        border-radius: 0px 30px 30px 0px !important;
+      }
+    
+      .login-buttons {
+        border-radius: 30px 0px 0px 30px;
+      }
+    }
   }
 }
